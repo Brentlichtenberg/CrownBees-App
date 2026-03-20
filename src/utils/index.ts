@@ -16,6 +16,8 @@ export const formatDate = (date: Date): string => {
   });
 };
 
+let _idCounter = 0;
 export const generateId = (): string => {
-  return Date.now().toString() + Math.random().toString(36).slice(2, 11);
+  _idCounter += 1;
+  return `${Date.now()}-${_idCounter}-${Math.random().toString(36).slice(2, 9)}`;
 };

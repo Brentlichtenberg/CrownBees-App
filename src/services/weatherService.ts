@@ -71,13 +71,29 @@ export const getWeatherByZip = async (zipCode: string): Promise<WeatherData> => 
 };
 
 const mapWeatherIcon = (iconCode: string): string => {
-  if (iconCode.startsWith('01')) {return '☀️';}
-  if (iconCode.startsWith('02')) {return '🌤️';}
-  if (iconCode.startsWith('03')) {return '⛅';}
-  if (iconCode.startsWith('04')) {return '☁️';}
-  if (iconCode.startsWith('09') || iconCode.startsWith('10')) {return '🌧️';}
-  if (iconCode.startsWith('11')) {return '⛈️';}
-  if (iconCode.startsWith('13')) {return '❄️';}
-  if (iconCode.startsWith('50')) {return '🌫️';}
+  if (iconCode.startsWith('01')) {
+    return '☀️';
+  }
+  if (iconCode.startsWith('02')) {
+    return '🌤️';
+  }
+  if (iconCode.startsWith('03')) {
+    return '⛅';
+  }
+  if (iconCode.startsWith('04')) {
+    return '☁️';
+  }
+  if (iconCode.startsWith('09') || iconCode.startsWith('10')) {
+    return '🌧️';
+  }
+  if (iconCode.startsWith('11')) {
+    return '⛈️';
+  }
+  if (iconCode.startsWith('13')) {
+    return '❄️';
+  }
+  if (iconCode.startsWith('50')) {
+    return '🌫️';
+  }
   return '🌡️';
 };
