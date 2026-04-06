@@ -7,59 +7,59 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA000200000000000000001 /* CrownBeesAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000001 /* CrownBeesAppApp.swift */; };
-		AA000200000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000002 /* ContentView.swift */; };
-		AA000200000000000000003 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000003 /* User.swift */; };
-		AA000200000000000000004 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000004 /* JournalEntry.swift */; };
-		AA000200000000000000005 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000005 /* WeatherData.swift */; };
-		AA000200000000000000006 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000006 /* AppConstants.swift */; };
-		AA000200000000000000007 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000007 /* AuthService.swift */; };
-		AA000200000000000000008 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000008 /* WeatherService.swift */; };
-		AA000200000000000000009 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000009 /* StorageService.swift */; };
-		AA00020000000000000000A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000A /* LoginView.swift */; };
-		AA00020000000000000000B /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000B /* RegisterView.swift */; };
-		AA00020000000000000000C /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000C /* SideMenuView.swift */; };
-		AA00020000000000000000D /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000D /* MenuButton.swift */; };
-		AA00020000000000000000E /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000E /* MainAppView.swift */; };
-		AA00020000000000000000F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000F /* HomeView.swift */; };
-		AA000200000000000000010 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000010 /* WeatherView.swift */; };
-		AA000200000000000000011 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000011 /* JournalView.swift */; };
-		AA000200000000000000012 /* ReleaseLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000012 /* ReleaseLogView.swift */; };
-		AA000200000000000000013 /* HarvestLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000013 /* HarvestLogView.swift */; };
-		AA000200000000000000014 /* PestLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000014 /* PestLogView.swift */; };
-		AA000200000000000000015 /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000015 /* ResourcesView.swift */; };
-		AA000200000000000000017 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000100000000000000017 /* Assets.xcassets */; };
+		AA00020000000000000000FF1 /* CrownBeesAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FF1 /* CrownBeesAppApp.swift */; };
+		AA00020000000000000000FF2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FF2 /* ContentView.swift */; };
+		AA00020000000000000000FF3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FF3 /* User.swift */; };
+		AA00020000000000000000FF4 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FF4 /* JournalEntry.swift */; };
+		AA00020000000000000000FF5 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FF5 /* WeatherData.swift */; };
+		AA00020000000000000000FF6 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FF6 /* AppConstants.swift */; };
+		AA00020000000000000000FF7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FF7 /* AuthService.swift */; };
+		AA00020000000000000000FF8 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FF8 /* WeatherService.swift */; };
+		AA00020000000000000000FF9 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FF9 /* StorageService.swift */; };
+		AA00020000000000000000FFA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FFA /* LoginView.swift */; };
+		AA00020000000000000000FFB /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FFB /* RegisterView.swift */; };
+		AA00020000000000000000FFC /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FFC /* SideMenuView.swift */; };
+		AA00020000000000000000FFD /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FFD /* MenuButton.swift */; };
+		AA00020000000000000000FFE /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FFE /* MainAppView.swift */; };
+		AA00020000000000000000FF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FF /* HomeView.swift */; };
+		AA00020000000000000001F0 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000001F0 /* WeatherView.swift */; };
+		AA00020000000000000001F1 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000001F1 /* JournalView.swift */; };
+		AA00020000000000000001F2 /* ReleaseLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000001F2 /* ReleaseLogView.swift */; };
+		AA00020000000000000001F3 /* HarvestLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000001F3 /* HarvestLogView.swift */; };
+		AA00020000000000000001F4 /* PestLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000001F4 /* PestLogView.swift */; };
+		AA00020000000000000001F5 /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000001F5 /* ResourcesView.swift */; };
+		AA00020000000000000001F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000001F7 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AA000100000000000000001 /* CrownBeesAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrownBeesAppApp.swift; sourceTree = "<group>"; };
-		AA000100000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		AA000100000000000000003 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		AA000100000000000000004 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
-		AA000100000000000000005 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
-		AA000100000000000000006 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
-		AA000100000000000000007 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		AA000100000000000000008 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
-		AA000100000000000000009 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
-		AA00010000000000000000A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		AA00010000000000000000B /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
-		AA00010000000000000000C /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
-		AA00010000000000000000D /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
-		AA00010000000000000000E /* MainAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppView.swift; sourceTree = "<group>"; };
-		AA00010000000000000000F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		AA000100000000000000010 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
-		AA000100000000000000011 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
-		AA000100000000000000012 /* ReleaseLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseLogView.swift; sourceTree = "<group>"; };
-		AA000100000000000000013 /* HarvestLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestLogView.swift; sourceTree = "<group>"; };
-		AA000100000000000000014 /* PestLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PestLogView.swift; sourceTree = "<group>"; };
-		AA000100000000000000015 /* ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
-		AA000100000000000000016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA000100000000000000017 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AA0009000000000000000A1 /* CrownBeesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrownBeesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA00010000000000000000FF1 /* CrownBeesAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrownBeesAppApp.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FF2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FF3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FF4 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FF5 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FF6 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FF7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FF8 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FF9 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FFA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FFB /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FFC /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FFD /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FFE /* MainAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppView.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		AA00010000000000000001F0 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		AA00010000000000000001F1 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
+		AA00010000000000000001F2 /* ReleaseLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseLogView.swift; sourceTree = "<group>"; };
+		AA00010000000000000001F3 /* HarvestLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestLogView.swift; sourceTree = "<group>"; };
+		AA00010000000000000001F4 /* PestLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PestLogView.swift; sourceTree = "<group>"; };
+		AA00010000000000000001F5 /* ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
+		AA00010000000000000001F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA00010000000000000001F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA0009000000000000000AF1 /* CrownBeesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrownBeesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AA000500000000000000003 /* Frameworks */ = {
+		AA00050000000000000000F3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -69,128 +69,128 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA000400000000000000001 /* Root */ = {
+		AA00040000000000000000F1 /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				AA000400000000000000002 /* CrownBeesApp */,
-				AA000400000000000000014 /* Products */,
+				AA00040000000000000000F2 /* CrownBeesApp */,
+				AA00040000000000000001F4 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		AA000400000000000000002 /* CrownBeesApp */ = {
+		AA00040000000000000000F2 /* CrownBeesApp */ = {
 			isa = PBXGroup;
 			children = (
-				AA000100000000000000001 /* CrownBeesAppApp.swift */,
-				AA000100000000000000002 /* ContentView.swift */,
-				AA000400000000000000003 /* Models */,
-				AA000400000000000000004 /* Views */,
-				AA000400000000000000011 /* Services */,
-				AA000400000000000000012 /* Constants */,
-				AA000100000000000000017 /* Assets.xcassets */,
-				AA000100000000000000016 /* Info.plist */,
+				AA00010000000000000000FF1 /* CrownBeesAppApp.swift */,
+				AA00010000000000000000FF2 /* ContentView.swift */,
+				AA00040000000000000000F3 /* Models */,
+				AA00040000000000000000F4 /* Views */,
+				AA00040000000000000001F1 /* Services */,
+				AA00040000000000000001F2 /* Constants */,
+				AA00010000000000000001F7 /* Assets.xcassets */,
+				AA00010000000000000001F6 /* Info.plist */,
 			);
 			path = CrownBeesApp;
 			sourceTree = "<group>";
 		};
-		AA000400000000000000003 /* Models */ = {
+		AA00040000000000000000F3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AA000100000000000000003 /* User.swift */,
-				AA000100000000000000004 /* JournalEntry.swift */,
-				AA000100000000000000005 /* WeatherData.swift */,
+				AA00010000000000000000FF3 /* User.swift */,
+				AA00010000000000000000FF4 /* JournalEntry.swift */,
+				AA00010000000000000000FF5 /* WeatherData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		AA000400000000000000004 /* Views */ = {
+		AA00040000000000000000F4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AA000400000000000000005 /* Auth */,
-				AA000400000000000000006 /* Home */,
-				AA000400000000000000007 /* Weather */,
-				AA000400000000000000008 /* Journal */,
-				AA000400000000000000009 /* Resources */,
-				AA00040000000000000000A /* Components */,
+				AA00040000000000000000F5 /* Auth */,
+				AA00040000000000000000F6 /* Home */,
+				AA00040000000000000000F7 /* Weather */,
+				AA00040000000000000000F8 /* Journal */,
+				AA00040000000000000000F9 /* Resources */,
+				AA00040000000000000000FA /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		AA000400000000000000005 /* Auth */ = {
+		AA00040000000000000000F5 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				AA00010000000000000000A /* LoginView.swift */,
-				AA00010000000000000000B /* RegisterView.swift */,
+				AA00010000000000000000FFA /* LoginView.swift */,
+				AA00010000000000000000FFB /* RegisterView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		AA000400000000000000006 /* Home */ = {
+		AA00040000000000000000F6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				AA00010000000000000000F /* HomeView.swift */,
+				AA00010000000000000000FF /* HomeView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
 		};
-		AA000400000000000000007 /* Weather */ = {
+		AA00040000000000000000F7 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				AA000100000000000000010 /* WeatherView.swift */,
+				AA00010000000000000001F0 /* WeatherView.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
 		};
-		AA000400000000000000008 /* Journal */ = {
+		AA00040000000000000000F8 /* Journal */ = {
 			isa = PBXGroup;
 			children = (
-				AA000100000000000000011 /* JournalView.swift */,
-				AA000100000000000000012 /* ReleaseLogView.swift */,
-				AA000100000000000000013 /* HarvestLogView.swift */,
-				AA000100000000000000014 /* PestLogView.swift */,
+				AA00010000000000000001F1 /* JournalView.swift */,
+				AA00010000000000000001F2 /* ReleaseLogView.swift */,
+				AA00010000000000000001F3 /* HarvestLogView.swift */,
+				AA00010000000000000001F4 /* PestLogView.swift */,
 			);
 			path = Journal;
 			sourceTree = "<group>";
 		};
-		AA000400000000000000009 /* Resources */ = {
+		AA00040000000000000000F9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AA000100000000000000015 /* ResourcesView.swift */,
+				AA00010000000000000001F5 /* ResourcesView.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		AA00040000000000000000A /* Components */ = {
+		AA00040000000000000000FA /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				AA00010000000000000000C /* SideMenuView.swift */,
-				AA00010000000000000000D /* MenuButton.swift */,
-				AA00010000000000000000E /* MainAppView.swift */,
+				AA00010000000000000000FFC /* SideMenuView.swift */,
+				AA00010000000000000000FFD /* MenuButton.swift */,
+				AA00010000000000000000FFE /* MainAppView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
 		};
-		AA000400000000000000011 /* Services */ = {
+		AA00040000000000000001F1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				AA000100000000000000007 /* AuthService.swift */,
-				AA000100000000000000008 /* WeatherService.swift */,
-				AA000100000000000000009 /* StorageService.swift */,
+				AA00010000000000000000FF7 /* AuthService.swift */,
+				AA00010000000000000000FF8 /* WeatherService.swift */,
+				AA00010000000000000000FF9 /* StorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		AA000400000000000000012 /* Constants */ = {
+		AA00040000000000000001F2 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				AA000100000000000000006 /* AppConstants.swift */,
+				AA00010000000000000000FF6 /* AppConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		AA000400000000000000014 /* Products */ = {
+		AA00040000000000000001F4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA0009000000000000000A1 /* CrownBeesApp.app */,
+				AA0009000000000000000AF1 /* CrownBeesApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,13 +198,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA000900000000000000001 /* CrownBeesApp */ = {
+		AA00090000000000000000F1 /* CrownBeesApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA000700000000000000002 /* Build configuration list for PBXNativeTarget "CrownBeesApp" */;
+			buildConfigurationList = AA00070000000000000000F2 /* Build configuration list for PBXNativeTarget "CrownBeesApp" */;
 			buildPhases = (
-				AA000500000000000000001 /* Sources */,
-				AA000500000000000000003 /* Frameworks */,
-				AA000500000000000000002 /* Resources */,
+				AA00050000000000000000F1 /* Sources */,
+				AA00050000000000000000F3 /* Frameworks */,
+				AA00050000000000000000F2 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -212,25 +212,25 @@
 			);
 			name = CrownBeesApp;
 			productName = CrownBeesApp;
-			productReference = AA0009000000000000000A1 /* CrownBeesApp.app */;
+			productReference = AA0009000000000000000AF1 /* CrownBeesApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		AA000800000000000000001 /* Project object */ = {
+		AA00080000000000000000F1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					AA000900000000000000001 = {
+					AA00090000000000000000F1 = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
-			buildConfigurationList = AA000700000000000000001 /* Build configuration list for PBXProject "CrownBeesApp" */;
+			buildConfigurationList = AA00070000000000000000F1 /* Build configuration list for PBXProject "CrownBeesApp" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -238,60 +238,60 @@
 				en,
 				Base,
 			);
-			mainGroup = AA000400000000000000001;
-			productRefGroup = AA000400000000000000014 /* Products */;
+			mainGroup = AA00040000000000000000F1;
+			productRefGroup = AA00040000000000000001F4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA000900000000000000001 /* CrownBeesApp */,
+				AA00090000000000000000F1 /* CrownBeesApp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AA000500000000000000002 /* Resources */ = {
+		AA00050000000000000000F2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA000200000000000000017 /* Assets.xcassets in Resources */,
+				AA00020000000000000001F7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AA000500000000000000001 /* Sources */ = {
+		AA00050000000000000000F1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA000200000000000000001 /* CrownBeesAppApp.swift in Sources */,
-				AA000200000000000000002 /* ContentView.swift in Sources */,
-				AA000200000000000000003 /* User.swift in Sources */,
-				AA000200000000000000004 /* JournalEntry.swift in Sources */,
-				AA000200000000000000005 /* WeatherData.swift in Sources */,
-				AA000200000000000000006 /* AppConstants.swift in Sources */,
-				AA000200000000000000007 /* AuthService.swift in Sources */,
-				AA000200000000000000008 /* WeatherService.swift in Sources */,
-				AA000200000000000000009 /* StorageService.swift in Sources */,
-				AA00020000000000000000A /* LoginView.swift in Sources */,
-				AA00020000000000000000B /* RegisterView.swift in Sources */,
-				AA00020000000000000000C /* SideMenuView.swift in Sources */,
-				AA00020000000000000000D /* MenuButton.swift in Sources */,
-				AA00020000000000000000E /* MainAppView.swift in Sources */,
-				AA00020000000000000000F /* HomeView.swift in Sources */,
-				AA000200000000000000010 /* WeatherView.swift in Sources */,
-				AA000200000000000000011 /* JournalView.swift in Sources */,
-				AA000200000000000000012 /* ReleaseLogView.swift in Sources */,
-				AA000200000000000000013 /* HarvestLogView.swift in Sources */,
-				AA000200000000000000014 /* PestLogView.swift in Sources */,
-				AA000200000000000000015 /* ResourcesView.swift in Sources */,
+				AA00020000000000000000FF1 /* CrownBeesAppApp.swift in Sources */,
+				AA00020000000000000000FF2 /* ContentView.swift in Sources */,
+				AA00020000000000000000FF3 /* User.swift in Sources */,
+				AA00020000000000000000FF4 /* JournalEntry.swift in Sources */,
+				AA00020000000000000000FF5 /* WeatherData.swift in Sources */,
+				AA00020000000000000000FF6 /* AppConstants.swift in Sources */,
+				AA00020000000000000000FF7 /* AuthService.swift in Sources */,
+				AA00020000000000000000FF8 /* WeatherService.swift in Sources */,
+				AA00020000000000000000FF9 /* StorageService.swift in Sources */,
+				AA00020000000000000000FFA /* LoginView.swift in Sources */,
+				AA00020000000000000000FFB /* RegisterView.swift in Sources */,
+				AA00020000000000000000FFC /* SideMenuView.swift in Sources */,
+				AA00020000000000000000FFD /* MenuButton.swift in Sources */,
+				AA00020000000000000000FFE /* MainAppView.swift in Sources */,
+				AA00020000000000000000FF /* HomeView.swift in Sources */,
+				AA00020000000000000001F0 /* WeatherView.swift in Sources */,
+				AA00020000000000000001F1 /* JournalView.swift in Sources */,
+				AA00020000000000000001F2 /* ReleaseLogView.swift in Sources */,
+				AA00020000000000000001F3 /* HarvestLogView.swift in Sources */,
+				AA00020000000000000001F4 /* PestLogView.swift in Sources */,
+				AA00020000000000000001F5 /* ResourcesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		AA000600000000000000001 /* Debug */ = {
+		AA00060000000000000000F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -353,7 +353,7 @@
 			};
 			name = Debug;
 		};
-		AA000600000000000000002 /* Release */ = {
+		AA00060000000000000000F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -408,7 +408,7 @@
 			};
 			name = Release;
 		};
-		AA000600000000000000003 /* Debug */ = {
+		AA00060000000000000000F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSTET_CATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -432,7 +432,7 @@
 			};
 			name = Debug;
 		};
-		AA000600000000000000004 /* Release */ = {
+		AA00060000000000000000F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSET_CATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -457,20 +457,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA000700000000000000001 /* Build configuration list for PBXProject "CrownBeesApp" */ = {
+		AA00070000000000000000F1 /* Build configuration list for PBXProject "CrownBeesApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA000600000000000000001 /* Debug */,
-				AA000600000000000000002 /* Release */,
+				AA00060000000000000000F1 /* Debug */,
+				AA00060000000000000000F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA000700000000000000002 /* Build configuration list for PBXNativeTarget "CrownBeesApp" */ = {
+		AA00070000000000000000F2 /* Build configuration list for PBXNativeTarget "CrownBeesApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA000600000000000000003 /* Debug */,
-				AA000600000000000000004 /* Release */,
+				AA00060000000000000000F3 /* Debug */,
+				AA00060000000000000000F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -478,5 +478,5 @@
 /* End XCConfigurationList section */
 
 	};
-	rootObject = AA000800000000000000001 /* Project object */;
+	rootObject = AA00080000000000000000F1 /* Project object */;
 }
