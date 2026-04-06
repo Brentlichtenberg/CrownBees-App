@@ -93,7 +93,7 @@ struct WeatherView: View {
                             weatherDetail(
                                 icon: "thermometer.medium",
                                 label: "Feels Like",
-                                value: "\(Int(weather.main.temp))°F"
+                                value: "\(Int(weather.main.feels_like))°F"
                             )
                         }
                     }

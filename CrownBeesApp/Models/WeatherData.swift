@@ -10,6 +10,7 @@ struct WeatherResponse: Codable {
 struct MainWeather: Codable {
     let temp: Double
     let humidity: Int
+    let feels_like: Double
 }
 
 struct WeatherCondition: Codable {
