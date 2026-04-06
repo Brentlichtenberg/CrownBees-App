@@ -100,7 +100,7 @@ CrownBeesApp/
 | Token | Hex | Usage |
 |---|---|---|
 | `honeyGold` | `#F5A623` | Accents, icons, highlights |
-| `forestGreen` | `#2D5F2D` | Primary brand colour, buttons |
+| `forestGreen` | `#2D5F2D` | Primary brand color, buttons |
 | `warmBrown` | `#8B6914` | Secondary actions, harvest theme |
 | `creamBackground` | `#FFF8E7` | App background |
 | `darkText` | `#333333` | Body text |
