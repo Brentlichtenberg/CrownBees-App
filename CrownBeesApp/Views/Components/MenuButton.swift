@@ -11,7 +11,7 @@ struct MenuButton: View {
         }) {
             Image(systemName: "line.3.horizontal")
                 .font(.system(size: 20, weight: .medium))
-                .foregroundColor(AppConstants.forestGreen)
+                .foregroundColor(AppConstants.darkGreen)
         }
     }
 }

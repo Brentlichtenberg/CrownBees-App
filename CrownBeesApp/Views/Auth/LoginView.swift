@@ -10,7 +10,7 @@ struct LoginView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                AppConstants.creamBackground.ignoresSafeArea()
+                AppConstants.beige.ignoresSafeArea()
                 
                 ScrollView {
                     VStack(spacing: 32) {
@@ -18,14 +18,14 @@ struct LoginView: View {
                         VStack(spacing: 12) {
                             Image(systemName: "hexagon.fill")
                                 .font(.system(size: 80))
-                                .foregroundColor(AppConstants.honeyGold)
+                                .foregroundColor(AppConstants.orange)
                             Text("CrownBees")
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
-                                .foregroundColor(AppConstants.forestGreen)
+                                .foregroundColor(AppConstants.darkGreen)
                             Text("Your Mason Bee Companion")
                                 .font(.subheadline)
-                                .foregroundColor(AppConstants.warmBrown)
+                                .foregroundColor(Color(.secondaryLabel))
                         }
                         .padding(.top, 60)
                         
@@ -57,7 +57,7 @@ struct LoginView: View {
                                     .fontWeight(.semibold)
                                     .frame(maxWidth: .infinity)
                                     .padding()
-                                    .background(AppConstants.forestGreen)
+                                    .background(AppConstants.darkGreen)
                                     .foregroundColor(.white)
                                     .cornerRadius(12)
                             }
@@ -71,7 +71,7 @@ struct LoginView: View {
                                     .foregroundColor(AppConstants.darkText)
                                 Text("Register")
                                     .fontWeight(.bold)
-                                    .foregroundColor(AppConstants.forestGreen)
+                                    .foregroundColor(AppConstants.darkGreen)
                             }
                             .font(.subheadline)
                         }

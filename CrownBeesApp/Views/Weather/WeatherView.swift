@@ -10,14 +10,14 @@ struct WeatherView: View {
                 // Zip code note
                 HStack {
                     Image(systemName: "location.fill")
-                        .foregroundColor(AppConstants.forestGreen)
+                        .foregroundColor(AppConstants.darkGreen)
                     Text("Weather data is based on your registered zip code.")
                         .font(.caption)
                         .foregroundColor(AppConstants.darkText)
                     Spacer()
                 }
                 .padding(12)
-                .background(AppConstants.honeyGold.opacity(0.2))
+                .background(AppConstants.orange.opacity(0.2))
                 .cornerRadius(10)
                 
                 if weatherService.isLoading {
@@ -42,7 +42,7 @@ struct WeatherView: View {
                                 weatherService.fetchWeather(zipCode: zip)
                             }
                         }
-                        .foregroundColor(AppConstants.forestGreen)
+                        .foregroundColor(AppConstants.darkGreen)
                     }
                     .padding(20)
                     .background(Color.white)
@@ -56,7 +56,7 @@ struct WeatherView: View {
                             Text(weather.name)
                                 .font(.title2)
                                 .fontWeight(.bold)
-                                .foregroundColor(AppConstants.forestGreen)
+                                .foregroundColor(AppConstants.darkGreen)
                             Spacer()
                             Text("\(Int(weather.main.temp))°F")
                                 .font(.system(size: 44, weight: .thin))
@@ -67,7 +67,7 @@ struct WeatherView: View {
                             HStack {
                                 Image(systemName: weatherService.sfSymbol(for: condition.icon))
                                     .font(.system(size: 40))
-                                    .foregroundColor(AppConstants.honeyGold)
+                                    .foregroundColor(AppConstants.orange)
                                 Text(condition.description.capitalized)
                                     .font(.title3)
                                     .foregroundColor(AppConstants.darkText)
@@ -107,7 +107,7 @@ struct WeatherView: View {
                         VStack(alignment: .leading, spacing: 12) {
                             Text("5-Day Forecast")
                                 .font(.headline)
-                                .foregroundColor(AppConstants.forestGreen)
+                                .foregroundColor(AppConstants.darkGreen)
                             
                             let dailyForecasts = groupForecastByDay(forecast.list)
                             ForEach(dailyForecasts.prefix(5), id: \.0) { day, items in
@@ -125,7 +125,7 @@ struct WeatherView: View {
             }
             .padding(16)
         }
-        .background(AppConstants.creamBackground)
+        .background(AppConstants.beige)
         .navigationTitle("Weather")
         .onAppear {
             if let zip = authService.currentUser?.zipCode {
@@ -139,7 +139,7 @@ struct WeatherView: View {
         VStack(spacing: 4) {
             Image(systemName: icon)
                 .font(.system(size: 22))
-                .foregroundColor(AppConstants.forestGreen)
+                .foregroundColor(AppConstants.darkGreen)
             Text(value)
                 .font(.headline)
                 .foregroundColor(AppConstants.darkText)
@@ -159,7 +159,7 @@ struct WeatherView: View {
             
             if let cond = item.weather.first {
                 Image(systemName: weatherService.sfSymbol(for: cond.icon))
-                    .foregroundColor(AppConstants.honeyGold)
+                    .foregroundColor(AppConstants.orange)
             }
             
             Spacer()

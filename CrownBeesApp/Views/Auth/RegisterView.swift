@@ -11,7 +11,7 @@ struct RegisterView: View {
     
     var body: some View {
         ZStack {
-            AppConstants.creamBackground.ignoresSafeArea()
+            AppConstants.beige.ignoresSafeArea()
             
             ScrollView {
                 VStack(spacing: 32) {
@@ -19,14 +19,14 @@ struct RegisterView: View {
                     VStack(spacing: 8) {
                         Image(systemName: "hexagon.fill")
                             .font(.system(size: 60))
-                            .foregroundColor(AppConstants.honeyGold)
+                            .foregroundColor(AppConstants.orange)
                         Text("Create Account")
                             .font(.title)
                             .fontWeight(.bold)
-                            .foregroundColor(AppConstants.forestGreen)
+                            .foregroundColor(AppConstants.darkGreen)
                         Text("Join the CrownBees community")
                             .font(.subheadline)
-                            .foregroundColor(AppConstants.warmBrown)
+                            .foregroundColor(Color(.secondaryLabel))
                     }
                     .padding(.top, 40)
                     
@@ -71,7 +71,7 @@ struct RegisterView: View {
                                 .fontWeight(.semibold)
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .background(AppConstants.forestGreen)
+                                .background(AppConstants.darkGreen)
                                 .foregroundColor(.white)
                                 .cornerRadius(12)
                         }
@@ -85,7 +85,7 @@ struct RegisterView: View {
                                 .foregroundColor(AppConstants.darkText)
                             Text("Log In")
                                 .fontWeight(.bold)
-                                .foregroundColor(AppConstants.forestGreen)
+                                .foregroundColor(AppConstants.darkGreen)
                         }
                         .font(.subheadline)
                     }

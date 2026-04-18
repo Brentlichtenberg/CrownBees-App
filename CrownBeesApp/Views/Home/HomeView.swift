@@ -9,7 +9,7 @@ struct HomeView: View {
                     Rectangle()
                         .fill(
                             LinearGradient(
-                                colors: [AppConstants.forestGreen, AppConstants.honeyGold],
+                                colors: [AppConstants.darkGreen, AppConstants.orange],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -32,7 +32,7 @@ struct HomeView: View {
                         Text("Welcome to CrownBees!")
                             .font(.title)
                             .fontWeight(.bold)
-                            .foregroundColor(AppConstants.forestGreen)
+                            .foregroundColor(AppConstants.darkGreen)
                         
                         Text("Your mason bee companion app — content coming soon.")
                             .font(.body)
@@ -48,27 +48,27 @@ struct HomeView: View {
                             icon: "cloud.sun.fill",
                             title: "Personalised Weather",
                             description: "Track local weather conditions for your bees.",
-                            color: AppConstants.honeyGold
+                            color: AppConstants.orange
                         )
                         featureCard(
                             icon: "book.fill",
                             title: "Beekeeping Journal",
                             description: "Log releases, harvests, and pest observations.",
-                            color: AppConstants.warmBrown
+                            color: AppConstants.navyBlue
                         )
                         featureCard(
                             icon: "link",
                             title: "Resources",
                             description: "Access guides and products from CrownBees.",
-                            color: AppConstants.forestGreen
+                            color: AppConstants.darkGreen
                         )
                     }
                 }
                 .padding(24)
-                .background(AppConstants.creamBackground)
+                .background(AppConstants.beige)
             }
         }
-        .background(AppConstants.creamBackground)
+        .background(AppConstants.beige)
         .navigationTitle("Home")
     }
     

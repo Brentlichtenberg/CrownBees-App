@@ -19,7 +19,7 @@ struct JournalView: View {
             }
             .pickerStyle(.segmented)
             .padding(16)
-            .background(AppConstants.creamBackground)
+            .background(AppConstants.beige)
             
             // Content
             switch selectedTab {
@@ -31,7 +31,7 @@ struct JournalView: View {
                 PestLogView()
             }
         }
-        .background(AppConstants.creamBackground)
+        .background(AppConstants.beige)
         .navigationTitle("Journal")
     }
 }

@@ -18,7 +18,7 @@ struct SideMenuView: View {
             VStack(alignment: .leading, spacing: 8) {
                 Image(systemName: "hexagon.fill")
                     .font(.system(size: 48))
-                    .foregroundColor(AppConstants.honeyGold)
+                    .foregroundColor(AppConstants.orange)
                 Text("CrownBees")
                     .font(.title2)
                     .fontWeight(.bold)
@@ -33,7 +33,7 @@ struct SideMenuView: View {
             .padding(.top, 60)
             .padding(.bottom, 32)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(AppConstants.forestGreen)
+            .background(AppConstants.darkGreen)
             
             // Menu Items
             VStack(alignment: .leading, spacing: 4) {
@@ -43,7 +43,7 @@ struct SideMenuView: View {
                 menuItem(title: "Resources", icon: "link", screen: .resources)
             }
             .padding(.vertical, 16)
-            .background(AppConstants.creamBackground)
+            .background(AppConstants.beige)
             
             Spacer()
             
@@ -68,9 +68,9 @@ struct SideMenuView: View {
                 .padding(.horizontal, 24)
                 .padding(.vertical, 16)
             }
-            .background(AppConstants.creamBackground)
+            .background(AppConstants.beige)
         }
-        .background(AppConstants.creamBackground)
+        .background(AppConstants.beige)
         .frame(maxHeight: .infinity)
     }
     
@@ -85,19 +85,19 @@ struct SideMenuView: View {
             HStack(spacing: 16) {
                 Image(systemName: icon)
                     .font(.system(size: 18))
-                    .foregroundColor(selectedScreen == screen ? AppConstants.forestGreen : AppConstants.warmBrown)
+                    .foregroundColor(selectedScreen == screen ? AppConstants.darkGreen : Color(.secondaryLabel))
                     .frame(width: 28)
                 Text(title)
                     .font(.body)
                     .fontWeight(selectedScreen == screen ? .semibold : .regular)
-                    .foregroundColor(selectedScreen == screen ? AppConstants.forestGreen : AppConstants.darkText)
+                    .foregroundColor(selectedScreen == screen ? AppConstants.darkGreen : AppConstants.darkText)
                 Spacer()
             }
             .padding(.horizontal, 24)
             .padding(.vertical, 14)
             .background(
                 selectedScreen == screen
-                    ? AppConstants.honeyGold.opacity(0.2)
+                    ? AppConstants.orange.opacity(0.2)
                     : Color.clear
             )
         }

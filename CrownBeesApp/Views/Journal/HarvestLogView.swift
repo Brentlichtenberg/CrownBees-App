@@ -14,7 +14,7 @@ struct HarvestLogView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     Text("Log a Harvest")
                         .font(.headline)
-                        .foregroundColor(AppConstants.forestGreen)
+                        .foregroundColor(AppConstants.darkGreen)
                     
                     DatePicker("Date of Harvest", selection: $date, displayedComponents: .date)
                         .datePickerStyle(.compact)
@@ -52,7 +52,7 @@ struct HarvestLogView: View {
                         }
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(AppConstants.warmBrown)
+                        .background(AppConstants.navyBlue)
                         .foregroundColor(.white)
                         .cornerRadius(12)
                     }
@@ -77,7 +77,7 @@ struct HarvestLogView: View {
                     VStack(alignment: .leading, spacing: 12) {
                         Text("Past Entries")
                             .font(.headline)
-                            .foregroundColor(AppConstants.forestGreen)
+                            .foregroundColor(AppConstants.darkGreen)
                         
                         ForEach(entries.reversed()) { entry in
                             entryRow(entry: entry)
@@ -91,7 +91,7 @@ struct HarvestLogView: View {
             }
             .padding(16)
         }
-        .background(AppConstants.creamBackground)
+        .background(AppConstants.beige)
         .onAppear {
             entries = StorageService.shared.loadHarvestEntries()
         }
@@ -102,7 +102,7 @@ struct HarvestLogView: View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
                 Image(systemName: "calendar")
-                    .foregroundColor(AppConstants.warmBrown)
+                    .foregroundColor(AppConstants.navyBlue)
                 Text(entry.date, style: .date)
                     .font(.subheadline)
                     .fontWeight(.medium)
@@ -110,7 +110,7 @@ struct HarvestLogView: View {
                 Spacer()
                 HStack(spacing: 4) {
                     Image(systemName: "hexagon.fill")
-                        .foregroundColor(AppConstants.honeyGold)
+                        .foregroundColor(AppConstants.orange)
                         .font(.caption)
                     Text("\(entry.numberOfBees) bees")
                         .font(.subheadline)
@@ -125,7 +125,7 @@ struct HarvestLogView: View {
             }
         }
         .padding(12)
-        .background(AppConstants.creamBackground)
+        .background(AppConstants.beige)
         .cornerRadius(10)
         Divider()
     }

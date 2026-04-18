@@ -12,11 +12,11 @@ struct ResourcesView: View {
                 VStack(spacing: 12) {
                     Image(systemName: "link.circle.fill")
                         .font(.system(size: 50))
-                        .foregroundColor(AppConstants.forestGreen)
+                        .foregroundColor(AppConstants.darkGreen)
                     Text("CrownBees Resources")
                         .font(.title2)
                         .fontWeight(.bold)
-                        .foregroundColor(AppConstants.forestGreen)
+                        .foregroundColor(AppConstants.darkGreen)
                     Text("Access all CrownBees resources, guides, and products.")
                         .font(.body)
                         .foregroundColor(AppConstants.darkText)
@@ -42,7 +42,7 @@ struct ResourcesView: View {
                         Image(systemName: "arrow.up.right")
                     }
                     .padding(18)
-                    .background(AppConstants.forestGreen)
+                    .background(AppConstants.darkGreen)
                     .foregroundColor(.white)
                     .cornerRadius(12)
                 }
@@ -51,13 +51,13 @@ struct ResourcesView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Quick Links")
                         .font(.headline)
-                        .foregroundColor(AppConstants.forestGreen)
+                        .foregroundColor(AppConstants.darkGreen)
                     
                     resourceCard(
                         icon: "star.fill",
                         title: "Getting Started",
                         description: "New to mason bees? Start here.",
-                        color: AppConstants.honeyGold,
+                        color: AppConstants.orange,
                         urlString: AppConstants.gettingStartedURL
                     )
                     
@@ -65,7 +65,7 @@ struct ResourcesView: View {
                         icon: "cart.fill",
                         title: "Products",
                         description: "Browse all CrownBees products.",
-                        color: AppConstants.forestGreen,
+                        color: AppConstants.darkGreen,
                         urlString: AppConstants.productsURL
                     )
                     
@@ -73,7 +73,7 @@ struct ResourcesView: View {
                         icon: "questionmark.circle.fill",
                         title: "FAQ",
                         description: "Answers to common questions.",
-                        color: AppConstants.warmBrown,
+                        color: AppConstants.lightBlue,
                         urlString: AppConstants.faqURL
                     )
                 }
@@ -84,7 +84,7 @@ struct ResourcesView: View {
             }
             .padding(16)
         }
-        .background(AppConstants.creamBackground)
+        .background(AppConstants.beige)
         .navigationTitle("Resources")
         .sheet(isPresented: $showSafari) {
             if let url = currentURL {
@@ -122,7 +122,7 @@ struct ResourcesView: View {
                     .font(.caption)
             }
             .padding(16)
-            .background(AppConstants.creamBackground)
+            .background(AppConstants.beige)
             .cornerRadius(12)
         }
     }

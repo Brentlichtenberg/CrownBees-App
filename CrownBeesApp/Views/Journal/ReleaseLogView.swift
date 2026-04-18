@@ -14,7 +14,7 @@ struct ReleaseLogView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     Text("Log a Bee Release")
                         .font(.headline)
-                        .foregroundColor(AppConstants.forestGreen)
+                        .foregroundColor(AppConstants.darkGreen)
                     
                     DatePicker("Date of Release", selection: $date, displayedComponents: .date)
                         .datePickerStyle(.compact)
@@ -52,7 +52,7 @@ struct ReleaseLogView: View {
                         }
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(AppConstants.forestGreen)
+                        .background(AppConstants.darkGreen)
                         .foregroundColor(.white)
                         .cornerRadius(12)
                     }
@@ -77,7 +77,7 @@ struct ReleaseLogView: View {
                     VStack(alignment: .leading, spacing: 12) {
                         Text("Past Entries")
                             .font(.headline)
-                            .foregroundColor(AppConstants.forestGreen)
+                            .foregroundColor(AppConstants.darkGreen)
                         
                         ForEach(entries.reversed()) { entry in
                             entryRow(entry: entry)
@@ -91,7 +91,7 @@ struct ReleaseLogView: View {
             }
             .padding(16)
         }
-        .background(AppConstants.creamBackground)
+        .background(AppConstants.beige)
         .onAppear {
             entries = StorageService.shared.loadReleaseEntries()
         }
@@ -102,7 +102,7 @@ struct ReleaseLogView: View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
                 Image(systemName: "calendar")
-                    .foregroundColor(AppConstants.forestGreen)
+                    .foregroundColor(AppConstants.darkGreen)
                 Text(entry.date, style: .date)
                     .font(.subheadline)
                     .fontWeight(.medium)
@@ -110,7 +110,7 @@ struct ReleaseLogView: View {
                 Spacer()
                 HStack(spacing: 4) {
                     Image(systemName: "hexagon.fill")
-                        .foregroundColor(AppConstants.honeyGold)
+                        .foregroundColor(AppConstants.orange)
                         .font(.caption)
                     Text("\(entry.numberOfBees) bees")
                         .font(.subheadline)
@@ -125,7 +125,7 @@ struct ReleaseLogView: View {
             }
         }
         .padding(12)
-        .background(AppConstants.creamBackground)
+        .background(AppConstants.beige)
         .cornerRadius(10)
         Divider()
     }

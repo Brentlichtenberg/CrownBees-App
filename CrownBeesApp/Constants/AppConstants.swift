@@ -13,12 +13,28 @@ struct AppConstants {
     static let harvestEntriesKey = "harvestEntries"
     static let pestEntriesKey = "pestEntries"
     
-    // MARK: - Colors (programmatic use)
-    static let honeyGold = Color(hex: "#F5A623")
-    static let forestGreen = Color(hex: "#2D5F2D")
-    static let warmBrown = Color(hex: "#8B6914")
-    static let creamBackground = Color(hex: "#FFF8E7")
-    static let darkText = Color(hex: "#333333")
+    // MARK: - Brand Colours — Primary
+    static let darkGreen  = Color("BrandDarkGreen")    // #004322
+    static let orange     = Color("BrandOrange")        // #FF8F05
+
+    // MARK: - Brand Colours — Secondary
+    static let lightBlue  = Color("SecondaryLightBlue") // #7DC9F0
+    static let navyBlue   = Color("SecondaryBlue")      // #003166
+    static let beige      = Color("SecondaryBeige")     // #FBF4EB
+    static let lightGreen = Color("SecondaryLightGreen") // #BDDD99
+
+    // MARK: - Semantic aliases (adaptive)
+    static let darkText   = Color(.label)
+
+    // MARK: - Spacing
+    enum Spacing {
+        static let xs:  CGFloat =  4
+        static let sm:  CGFloat =  8
+        static let md:  CGFloat = 16
+        static let lg:  CGFloat = 24
+        static let xl:  CGFloat = 32
+        static let xxl: CGFloat = 48
+    }
     
     // MARK: - CrownBees URLs
     static let crownBeesURL = "https://crownbees.com"
