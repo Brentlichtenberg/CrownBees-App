@@ -8,95 +8,114 @@ struct RegisterView: View {
     @State private var confirmPassword = ""
     @State private var zipCode = ""
     @State private var errorMessage = ""
-    
+
     var body: some View {
         ZStack {
-            AppConstants.beige.ignoresSafeArea()
-            
+            AppConstants.surface.ignoresSafeArea()
+
             ScrollView {
-                VStack(spacing: 32) {
-                    // Header
-                    VStack(spacing: 8) {
-                        Image(systemName: "hexagon.fill")
-                            .font(.system(size: 60))
-                            .foregroundColor(AppConstants.orange)
+                VStack(spacing: AppConstants.Spacing.xl) {
+
+                    // MARK: - Header
+                    VStack(spacing: AppConstants.Spacing.sm) {
+                        ZStack {
+                            Circle()
+                                .fill(AppConstants.primary.opacity(0.12))
+                                .frame(width: 72, height: 72)
+                            Image(systemName: "hexagon.fill")
+                                .font(.system(size: 36))
+                                .foregroundStyle(AppConstants.primary)
+                        }
                         Text("Create Account")
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundColor(AppConstants.darkGreen)
-                        Text("Join the CrownBees community")
+                            .font(.system(size: 30, weight: .bold))
+                            .tracking(-0.5)
+                            .foregroundStyle(AppConstants.onSurface)
+                        Text("Join the Crown Bees community")
                             .font(.subheadline)
-                            .foregroundColor(Color(.secondaryLabel))
+                            .foregroundStyle(AppConstants.onSurfaceVariant)
                     }
-                    .padding(.top, 40)
-                    
-                    // Registration Form
-                    VStack(spacing: 16) {
-                        TextField("Email", text: $email)
+                    .padding(.top, AppConstants.Spacing.xxl)
+
+                    // MARK: - Form Card
+                    VStack(spacing: AppConstants.Spacing.md) {
+                        ghostField(placeholder: "Email", text: $email)
                             .textInputAutocapitalization(.never)
                             .keyboardType(.emailAddress)
                             .autocorrectionDisabled()
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(12)
-                            .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: 2)
-                        
-                        SecureField("Password", text: $password)
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(12)
-                            .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: 2)
-                        
-                        SecureField("Confirm Password", text: $confirmPassword)
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(12)
-                            .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: 2)
-                        
-                        TextField("Zip Code", text: $zipCode)
+                        ghostSecureField(placeholder: "Password", text: $password)
+                        ghostSecureField(placeholder: "Confirm Password", text: $confirmPassword)
+                        ghostField(placeholder: "Zip Code", text: $zipCode)
                             .keyboardType(.numberPad)
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(12)
-                            .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: 2)
-                        
+
                         if !errorMessage.isEmpty {
                             Text(errorMessage)
-                                .foregroundColor(.red)
                                 .font(.caption)
+                                .foregroundStyle(.red)
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                        
+
                         Button(action: register) {
                             Text("Create Account")
                                 .fontWeight(.semibold)
                                 .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(AppConstants.darkGreen)
-                                .foregroundColor(.white)
-                                .cornerRadius(12)
+                                .padding(.vertical, AppConstants.Spacing.md)
+                                .background(
+                                    LinearGradient(
+                                        colors: [AppConstants.primary, AppConstants.primaryContainer],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
+                                .foregroundStyle(.white)
+                                .clipShape(Capsule())
+                        }
+
+                        Button(action: { dismiss() }) {
+                            HStack(spacing: 4) {
+                                Text("Already have an account?")
+                                    .foregroundStyle(AppConstants.onSurfaceVariant)
+                                Text("Log In")
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(AppConstants.secondary)
+                            }
+                            .font(.subheadline)
                         }
                     }
-                    .padding(.horizontal, 24)
-                    
-                    // Back to Login
-                    Button(action: { dismiss() }) {
-                        HStack {
-                            Text("Already have an account?")
-                                .foregroundColor(AppConstants.darkText)
-                            Text("Log In")
-                                .fontWeight(.bold)
-                                .foregroundColor(AppConstants.darkGreen)
-                        }
-                        .font(.subheadline)
-                    }
-                    
-                    Spacer()
+                    .padding(AppConstants.Spacing.lg)
+                    .background(AppConstants.surfaceContainerLowest)
+                    .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.lg))
+                    .shadow(color: AppConstants.shadowColor.opacity(0.07), radius: 20, x: 0, y: 6)
+                    .padding(.horizontal, AppConstants.Spacing.md)
                 }
             }
         }
         .navigationBarBackButtonHidden(false)
     }
-    
+
+    @ViewBuilder
+    private func ghostField(placeholder: String, text: Binding<String>) -> some View {
+        TextField(placeholder, text: text)
+            .padding(AppConstants.Spacing.md)
+            .background(AppConstants.surfaceContainerLow)
+            .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.md))
+            .overlay(
+                RoundedRectangle(cornerRadius: AppConstants.Radius.md)
+                    .stroke(AppConstants.onSurface.opacity(0.12), lineWidth: 1)
+            )
+    }
+
+    @ViewBuilder
+    private func ghostSecureField(placeholder: String, text: Binding<String>) -> some View {
+        SecureField(placeholder, text: text)
+            .padding(AppConstants.Spacing.md)
+            .background(AppConstants.surfaceContainerLow)
+            .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.md))
+            .overlay(
+                RoundedRectangle(cornerRadius: AppConstants.Radius.md)
+                    .stroke(AppConstants.onSurface.opacity(0.12), lineWidth: 1)
+            )
+    }
+
     private func register() {
         guard !email.isEmpty, !password.isEmpty, !confirmPassword.isEmpty, !zipCode.isEmpty else {
             errorMessage = "Please fill in all fields."

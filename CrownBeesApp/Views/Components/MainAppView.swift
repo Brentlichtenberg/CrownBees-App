@@ -11,7 +11,7 @@ struct MainAppView: View {
                 Group {
                     switch selectedScreen {
                     case .home:
-                        HomeView()
+                        HomeView(selectedScreen: $selectedScreen)
                     case .weather:
                         WeatherView()
                     case .journal:

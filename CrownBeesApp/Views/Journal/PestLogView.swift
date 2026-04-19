@@ -7,61 +7,85 @@ struct PestLogView: View {
     @State private var severity: PestSeverity = .low
     @State private var notes = ""
     @State private var showSaved = false
-    
+
     var body: some View {
         ScrollView {
-            VStack(spacing: 20) {
+            VStack(spacing: AppConstants.Spacing.lg) {
                 // Entry Form
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: AppConstants.Spacing.md) {
                     Text("Log a Pest Observation")
                         .font(.headline)
-                        .foregroundColor(AppConstants.darkGreen)
-                    
+                        .foregroundStyle(AppConstants.secondary)
+
                     DatePicker("Date Observed", selection: $date, displayedComponents: .date)
                         .datePickerStyle(.compact)
-                        .foregroundColor(AppConstants.darkText)
-                    
-                    VStack(alignment: .leading, spacing: 4) {
+                        .foregroundStyle(AppConstants.onSurface)
+
+                    // Pest Type — Pollinator chips
+                    VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
                         Text("Pest Type")
                             .font(.caption)
-                            .foregroundColor(AppConstants.darkText.opacity(0.7))
-                        Picker("Pest Type", selection: $pestType) {
-                            ForEach(PestType.allCases, id: \.self) { pest in
-                                Text(pest.rawValue).tag(pest)
+                            .foregroundStyle(AppConstants.onSurfaceVariant)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: AppConstants.Spacing.sm) {
+                                ForEach(PestType.allCases, id: \.self) { pest in
+                                    Button(action: {
+                                        withAnimation(.spring(response: 0.3, dampingFraction: 0.75)) {
+                                            pestType = pest
+                                        }
+                                    }) {
+                                        Text(pest.rawValue)
+                                            .font(.subheadline.weight(.medium))
+                                            .padding(.horizontal, AppConstants.Spacing.md)
+                                            .padding(.vertical, AppConstants.Spacing.sm)
+                                            .background(pestType == pest ? AppConstants.secondaryContainer : AppConstants.surfaceContainerHighest)
+                                            .foregroundStyle(pestType == pest ? AppConstants.secondary : AppConstants.onSurfaceVariant)
+                                            .clipShape(Capsule())
+                                    }
+                                }
                             }
                         }
-                        .pickerStyle(.menu)
-                        .padding(12)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .shadow(color: .black.opacity(0.04), radius: 3, x: 0, y: 1)
                     }
-                    
-                    VStack(alignment: .leading, spacing: 4) {
+
+                    // Severity — Pollinator chips
+                    VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
                         Text("Severity")
                             .font(.caption)
-                            .foregroundColor(AppConstants.darkText.opacity(0.7))
-                        Picker("Severity", selection: $severity) {
+                            .foregroundStyle(AppConstants.onSurfaceVariant)
+                        HStack(spacing: AppConstants.Spacing.sm) {
                             ForEach(PestSeverity.allCases, id: \.self) { sev in
-                                Text(sev.rawValue).tag(sev)
+                                Button(action: {
+                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.75)) {
+                                        severity = sev
+                                    }
+                                }) {
+                                    Text(sev.rawValue)
+                                        .font(.subheadline.weight(.medium))
+                                        .padding(.horizontal, AppConstants.Spacing.md)
+                                        .padding(.vertical, AppConstants.Spacing.sm)
+                                        .background(severity == sev ? severitySelectedBg(sev) : AppConstants.surfaceContainerHighest)
+                                        .foregroundStyle(severity == sev ? severitySelectedFg(sev) : AppConstants.onSurfaceVariant)
+                                        .clipShape(Capsule())
+                                }
                             }
                         }
-                        .pickerStyle(.segmented)
                     }
-                    
-                    VStack(alignment: .leading, spacing: 4) {
+
+                    VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
                         Text("Notes (optional)")
                             .font(.caption)
-                            .foregroundColor(AppConstants.darkText.opacity(0.7))
+                            .foregroundStyle(AppConstants.onSurfaceVariant)
                         TextField("Add notes...", text: $notes, axis: .vertical)
                             .lineLimit(3...6)
-                            .padding(12)
-                            .background(Color.white)
-                            .cornerRadius(10)
-                            .shadow(color: .black.opacity(0.04), radius: 3, x: 0, y: 1)
+                            .padding(AppConstants.Spacing.sm)
+                            .background(AppConstants.surfaceContainerLow)
+                            .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.md))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: AppConstants.Radius.md)
+                                    .stroke(AppConstants.onSurface.opacity(0.12), lineWidth: 1)
+                            )
                     }
-                    
+
                     Button(action: saveEntry) {
                         HStack {
                             Image(systemName: "checkmark.circle.fill")
@@ -70,101 +94,115 @@ struct PestLogView: View {
                         }
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(AppConstants.navyBlue)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
+                        .background(
+                            LinearGradient(
+                                colors: [AppConstants.primary, AppConstants.primaryContainer],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .foregroundStyle(.white)
+                        .clipShape(Capsule())
                     }
-                    
+
                     if showSaved {
                         HStack {
                             Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
+                                .foregroundStyle(AppConstants.secondary)
                             Text("Entry saved!")
-                                .foregroundColor(.green)
+                                .foregroundStyle(AppConstants.secondary)
                                 .font(.caption)
                         }
                     }
                 }
-                .padding(20)
-                .background(Color.white)
-                .cornerRadius(16)
-                .shadow(color: .black.opacity(0.06), radius: 6, x: 0, y: 3)
-                
+                .padding(AppConstants.Spacing.lg)
+                .background(AppConstants.surfaceContainerLowest)
+                .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.lg))
+                .shadow(color: AppConstants.shadowColor.opacity(0.06), radius: 20, x: 0, y: 6)
+
                 // Past Entries
                 if !entries.isEmpty {
-                    VStack(alignment: .leading, spacing: 12) {
+                    VStack(alignment: .leading, spacing: AppConstants.Spacing.sm) {
                         Text("Past Entries")
                             .font(.headline)
-                            .foregroundColor(AppConstants.darkGreen)
-                        
+                            .foregroundStyle(AppConstants.secondary)
+
                         ForEach(entries.reversed()) { entry in
                             entryRow(entry: entry)
                         }
                     }
-                    .padding(20)
-                    .background(Color.white)
-                    .cornerRadius(16)
-                    .shadow(color: .black.opacity(0.06), radius: 6, x: 0, y: 3)
+                    .padding(AppConstants.Spacing.lg)
+                    .background(AppConstants.surfaceContainerLowest)
+                    .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.lg))
+                    .shadow(color: AppConstants.shadowColor.opacity(0.06), radius: 20, x: 0, y: 6)
                 }
             }
-            .padding(16)
+            .padding(AppConstants.Spacing.md)
         }
-        .background(AppConstants.beige)
+        .background(AppConstants.surface)
         .onAppear {
             entries = StorageService.shared.loadPestEntries()
         }
     }
-    
+
     @ViewBuilder
     private func entryRow(entry: PestEntry) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
             HStack {
                 Image(systemName: "calendar")
-                    .foregroundColor(AppConstants.navyBlue)
+                    .foregroundStyle(AppConstants.secondary)
                 Text(entry.date, style: .date)
                     .font(.subheadline)
                     .fontWeight(.medium)
-                    .foregroundColor(AppConstants.darkText)
+                    .foregroundStyle(AppConstants.onSurface)
                 Spacer()
                 severityBadge(entry.severity)
             }
-            HStack(spacing: 8) {
+            HStack(spacing: AppConstants.Spacing.sm) {
                 Label(entry.pestType.rawValue, systemImage: "ant.fill")
                     .font(.caption)
-                    .foregroundColor(AppConstants.darkText)
+                    .foregroundStyle(AppConstants.onSurface)
             }
             if !entry.notes.isEmpty {
                 Text(entry.notes)
                     .font(.caption)
-                    .foregroundColor(AppConstants.darkText.opacity(0.7))
+                    .foregroundStyle(AppConstants.onSurfaceVariant)
             }
         }
-        .padding(12)
-        .background(AppConstants.beige)
-        .cornerRadius(10)
-        Divider()
+        .padding(AppConstants.Spacing.sm)
+        .background(AppConstants.surfaceContainerLow)
+        .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.md))
+        .shadow(color: AppConstants.shadowColor.opacity(0.04), radius: 8, x: 0, y: 2)
     }
-    
+
     @ViewBuilder
     private func severityBadge(_ severity: PestSeverity) -> some View {
         Text(severity.rawValue)
             .font(.caption)
             .fontWeight(.semibold)
-            .padding(.horizontal, 10)
-            .padding(.vertical, 4)
-            .background(severityColor(severity).opacity(0.2))
-            .foregroundColor(severityColor(severity))
-            .cornerRadius(8)
+            .padding(.horizontal, AppConstants.Spacing.sm)
+            .padding(.vertical, AppConstants.Spacing.xs)
+            .background(severitySelectedBg(severity))
+            .foregroundStyle(severitySelectedFg(severity))
+            .clipShape(Capsule())
     }
-    
-    private func severityColor(_ severity: PestSeverity) -> Color {
+
+    private func severitySelectedBg(_ severity: PestSeverity) -> Color {
         switch severity {
-        case .low: return .green
-        case .medium: return .orange
-        case .high: return .red
+        case .low: return AppConstants.secondaryContainer
+        case .medium: return AppConstants.primaryContainer.opacity(0.3)
+        case .high: return Color.red.opacity(0.15)
         }
     }
-    
+
+    private func severitySelectedFg(_ severity: PestSeverity) -> Color {
+        switch severity {
+        case .low: return AppConstants.secondary
+        case .medium: return AppConstants.primary
+        case .high: return Color.red
+        }
+    }
+
     private func saveEntry() {
         let entry = PestEntry(date: date, pestType: pestType, severity: severity, notes: notes)
         entries.append(entry)
