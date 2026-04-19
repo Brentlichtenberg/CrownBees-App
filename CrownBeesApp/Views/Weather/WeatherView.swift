@@ -1,5 +1,4 @@
 import SwiftUI
-import WeatherKit
 
 struct WeatherView: View {
     @StateObject private var service = WeatherService()
@@ -129,7 +128,7 @@ struct WeatherView: View {
 
     // MARK: - Current Conditions
 
-    private func currentConditionsCard(_ weather: CurrentWeather) -> some View {
+    private func currentConditionsCard(_ weather: AppWeather) -> some View {
         VStack(spacing: AppConstants.Spacing.md) {
             // Location + temp header
             HStack(alignment: .top) {
@@ -139,13 +138,13 @@ struct WeatherView: View {
                             .font(.title2.weight(.bold))
                             .foregroundColor(AppConstants.darkGreen)
                     }
-                    Text(weather.condition.description.capitalized)
+                    Text(weather.conditionLabel)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
                 Spacer()
                 HStack(alignment: .top, spacing: 2) {
-                    Text("\(Int(weather.temperature.converted(to: .fahrenheit).value))")
+                    Text("\(Int(weather.temperature))")
                         .font(.system(size: 54, weight: .thin))
                     Text("°F")
                         .font(.title2)
@@ -156,7 +155,7 @@ struct WeatherView: View {
 
             // Weather icon row
             HStack {
-                Image(systemName: weather.symbolName)
+                Image(systemName: weather.sfSymbolName)
                     .font(.system(size: 44))
                     .symbolRenderingMode(.multicolor)
                 Spacer()
@@ -169,25 +168,25 @@ struct WeatherView: View {
                 detailCell(
                     icon: "humidity.fill",
                     label: "Humidity",
-                    value: "\(Int(weather.humidity * 100))%"
+                    value: "\(weather.humidity)%"
                 )
                 Spacer()
                 detailCell(
                     icon: "wind",
                     label: "Wind",
-                    value: "\(Int(weather.wind.speed.converted(to: .milesPerHour).value)) mph"
+                    value: "\(Int(weather.windSpeed)) mph"
                 )
                 Spacer()
                 detailCell(
                     icon: "thermometer.medium",
                     label: "Feels Like",
-                    value: "\(Int(weather.apparentTemperature.converted(to: .fahrenheit).value))°F"
+                    value: "\(Int(weather.apparentTemperature))°F"
                 )
                 Spacer()
                 detailCell(
                     icon: "sun.max.fill",
                     label: "UV Index",
-                    value: "\(weather.uvIndex.value)"
+                    value: "\(weather.uvIndex)"
                 )
             }
         }
@@ -238,12 +237,10 @@ struct WeatherView: View {
 
     private var activityTip: String {
         guard let w = service.currentWeather else { return "" }
-        let tempF = w.temperature.converted(to: .fahrenheit).value
-        if tempF < 50 { return "Mason bees are inactive below 50°F." }
-        if tempF < 55 { return "Activity picks up above 55°F." }
-        let wind = w.wind.speed.converted(to: .milesPerHour).value
-        if wind > 15 { return "High winds (>\(Int(wind)) mph) keep bees close to home." }
-        if tempF > 95 { return "Very hot — bees may rest during peak afternoon heat." }
+        if w.temperature < 50 { return "Mason bees are inactive below 50°F." }
+        if w.temperature < 55 { return "Activity picks up above 55°F." }
+        if w.windSpeed > 15 { return "High winds (>\(Int(w.windSpeed)) mph) keep bees close to home." }
+        if w.temperature > 95 { return "Very hot — bees may rest during peak afternoon heat." }
         return "Ideal foraging conditions for your mason bees."
     }
 
@@ -269,14 +266,14 @@ struct WeatherView: View {
     }
 
     @ViewBuilder
-    private func forecastRow(_ day: DayWeather) -> some View {
+    private func forecastRow(_ day: AppDayWeather) -> some View {
         HStack {
             Text(dayLabel(day.date))
                 .font(.subheadline)
                 .foregroundColor(AppConstants.darkText)
                 .frame(width: 90, alignment: .leading)
 
-            Image(systemName: day.symbolName)
+            Image(systemName: day.sfSymbolName)
                 .symbolRenderingMode(.multicolor)
                 .font(.system(size: 22))
                 .frame(width: 32)
@@ -284,11 +281,11 @@ struct WeatherView: View {
             Spacer()
 
             HStack(spacing: 4) {
-                Text("\(Int(day.lowTemperature.converted(to: .fahrenheit).value))°")
+                Text("\(Int(day.lowTemp))°")
                     .foregroundColor(.secondary)
                 Text("–")
                     .foregroundColor(.secondary)
-                Text("\(Int(day.highTemperature.converted(to: .fahrenheit).value))°F")
+                Text("\(Int(day.highTemp))°F")
                     .fontWeight(.medium)
                     .foregroundColor(AppConstants.darkText)
             }

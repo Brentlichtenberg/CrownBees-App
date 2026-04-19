@@ -1,5 +1,4 @@
 import Foundation
-import WeatherKit
 import CoreLocation
 import SwiftUI
 
@@ -41,18 +40,13 @@ enum BeeActivity {
 @MainActor
 class WeatherService: NSObject, ObservableObject {
 
-    // MARK: Published state
-
-    @Published var currentWeather: CurrentWeather?
-    @Published var dailyForecast: [DayWeather] = []
+    @Published var currentWeather: AppWeather?
+    @Published var dailyForecast: [AppDayWeather] = []
     @Published var locationName: String = ""
     @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var locationAuthorized = false
 
-    // MARK: Private
-
-    private let kit = WeatherKit.WeatherService.shared
     private let locationManager = CLLocationManager()
     private let geocoder = CLGeocoder()
 
@@ -82,7 +76,7 @@ class WeatherService: NSObject, ObservableObject {
         }
     }
 
-    // MARK: - Manual search (city name or zip code)
+    // MARK: - Manual search
 
     func search(query: String) {
         let trimmed = query.trimmingCharacters(in: .whitespaces)
@@ -99,25 +93,61 @@ class WeatherService: NSObject, ObservableObject {
                 }
                 guard let placemark = placemarks!.first, let location = placemark.location else { return }
                 self.locationName = Self.formatPlacemark(placemark)
-                await self.fetchWeather(for: location)
+                await self.fetchWeather(for: location.coordinate)
             }
         }
     }
 
-    // MARK: - WeatherKit fetch
+    // MARK: - Open-Meteo fetch
 
-    func fetchWeather(for location: CLLocation) async {
+    func fetchWeather(for coordinate: CLLocationCoordinate2D) async {
+        let lat = coordinate.latitude
+        let lon = coordinate.longitude
+        let urlStr = "https://api.open-meteo.com/v1/forecast"
+            + "?latitude=\(lat)&longitude=\(lon)"
+            + "&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code,uv_index,is_day"
+            + "&daily=weather_code,temperature_2m_max,temperature_2m_min"
+            + "&temperature_unit=fahrenheit&wind_speed_unit=mph"
+            + "&forecast_days=7&timezone=auto"
+
+        guard let url = URL(string: urlStr) else {
+            isLoading = false
+            errorMessage = "Invalid request URL."
+            return
+        }
+
         do {
-            let weather = try await kit.weather(
-                for: location,
-                including: .current, .daily(startDate: Date(), endDate: Date().addingTimeInterval(7 * 86400))
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let decoded = try JSONDecoder().decode(OpenMeteoResponse.self, from: data)
+
+            let c = decoded.current
+            currentWeather = AppWeather(
+                temperature: c.temperature2m,
+                apparentTemperature: c.apparentTemperature,
+                humidity: c.relativeHumidity2m,
+                windSpeed: c.windSpeed10m,
+                weatherCode: c.weatherCode,
+                uvIndex: Int(c.uvIndex),
+                isDay: c.isDay == 1
             )
-            currentWeather = weather.0
-            dailyForecast = Array(weather.1.forecast.prefix(7))
+
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            dailyForecast = zip(decoded.daily.time.indices, decoded.daily.time).compactMap { i, dateStr in
+                guard let date = dateFormatter.date(from: dateStr) else { return nil }
+                return AppDayWeather(
+                    id: date,
+                    date: date,
+                    highTemp: decoded.daily.temperature2mMax[i],
+                    lowTemp: decoded.daily.temperature2mMin[i],
+                    weatherCode: decoded.daily.weatherCode[i]
+                )
+            }
+
             isLoading = false
         } catch {
             isLoading = false
-            errorMessage = "Weather unavailable: \(error.localizedDescription)"
+            errorMessage = "Couldn't load weather data. Check your connection and try again."
         }
     }
 
@@ -125,16 +155,10 @@ class WeatherService: NSObject, ObservableObject {
 
     var beeActivity: BeeActivity {
         guard let w = currentWeather else { return .unknown }
-        let tempF = w.temperature.converted(to: .fahrenheit).value
-        let windMph = w.wind.speed.converted(to: .milesPerHour).value
-        let rainyConditions: Set<WeatherCondition> = [
-            .rain, .heavyRain, .drizzle, .thunderstorms,
-            .isolatedThunderstorms, .scatteredThunderstorms
-        ]
-        if rainyConditions.contains(w.condition) { return .inactive }
-        if tempF < 50 { return .inactive }
-        if tempF < 55 || windMph > 15 { return .low }
-        if tempF > 95 { return .low }
+        if w.isRainy           { return .inactive }
+        if w.temperature < 50  { return .inactive }
+        if w.temperature < 55 || w.windSpeed > 15 { return .low }
+        if w.temperature > 95  { return .low }
         return .active
     }
 
@@ -151,9 +175,10 @@ extension WeatherService: CLLocationManagerDelegate {
 
     nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
+        let coordinate = location.coordinate
         Task { @MainActor in
             self.reverseGeocode(location)
-            await self.fetchWeather(for: location)
+            await self.fetchWeather(for: coordinate)
         }
     }
 
@@ -183,3 +208,4 @@ extension WeatherService: CLLocationManagerDelegate {
         }
     }
 }
+
