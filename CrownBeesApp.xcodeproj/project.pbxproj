@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA00020000000000000000FE1 /* WeatherKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FE1 /* WeatherKit.framework */; };
+		AA00020000000000000000FE2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FE2 /* CoreLocation.framework */; };
 		AA00020000000000000000FF1 /* CrownBeesAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FF1 /* CrownBeesAppApp.swift */; };
 		AA00020000000000000000FF2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FF2 /* ContentView.swift */; };
 		AA00020000000000000000FF3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FF3 /* User.swift */; };
@@ -56,6 +58,8 @@
 		AA00010000000000000001F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA00010000000000000001F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA0009000000000000000AF1 /* CrownBeesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrownBeesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA00010000000000000000FE1 /* WeatherKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WeatherKit.framework; path = System/Library/Frameworks/WeatherKit.framework; sourceTree = SDKROOT; };
+		AA00010000000000000000FE2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA00020000000000000000FE1 /* WeatherKit.framework in Frameworks */,
+				AA00020000000000000000FE2 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +420,7 @@
 				ASSTET_CATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSET_CATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSET_CATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CrownBeesApp/CrownBeesApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
@@ -437,6 +444,7 @@
 			buildSettings = {
 				ASSET_CATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSET_CATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CrownBeesApp/CrownBeesApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;

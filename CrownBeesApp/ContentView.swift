@@ -5,11 +5,13 @@ struct ContentView: View {
     
     var body: some View {
         Group {
-            if authService.isLoggedIn {
-                MainAppView()
-            } else {
-                LoginView()
-            }
+            // TESTING: login suppressed — go straight to main app
+            // if authService.isLoggedIn {
+            //     MainAppView()
+            // } else {
+            //     LoginView()
+            // }
+            MainAppView()
         }
     }
 }

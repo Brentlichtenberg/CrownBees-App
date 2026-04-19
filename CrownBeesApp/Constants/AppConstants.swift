@@ -1,11 +1,6 @@
 import SwiftUI
 
 struct AppConstants {
-    // MARK: - Weather API
-    // Replace with your own free key from https://openweathermap.org/api
-    static let weatherAPIKey = "YOUR_OPENWEATHERMAP_API_KEY_HERE"
-    static let weatherBaseURL = "https://api.openweathermap.org/data/2.5"
-    
     // MARK: - UserDefaults Keys
     static let isLoggedInKey = "isLoggedIn"
     static let currentUserKey = "currentUser"
