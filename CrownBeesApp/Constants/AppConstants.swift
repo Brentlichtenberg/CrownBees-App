@@ -71,7 +71,7 @@ struct AppConstants {
 
     // MARK: - CrownBees URLs
     static let crownBeesURL = "https://crownbees.com"
-    static let gettingStartedURL = "https://crownbees.com/pages/getting-started"
+    static let gettingStartedURL = "https://crownbees.com/pages/rewilding"
     static let productsURL = "https://crownbees.com/collections/all"
     static let faqURL = "https://crownbees.com/pages/mason-bee-faq"
 }
