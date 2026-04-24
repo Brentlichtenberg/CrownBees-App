@@ -2,8 +2,7 @@ import SwiftUI
 import SafariServices
 
 struct ResourcesView: View {
-    @State private var showSafari = false
-    @State private var currentURL: URL? = nil
+    @State private var selectedURL: IdentifiableURL? = nil
 
     var body: some View {
         ScrollView {
@@ -45,8 +44,9 @@ struct ResourcesView: View {
                 VStack(spacing: AppConstants.Spacing.lg) {
                     // Main Website Button
                     Button(action: {
-                        currentURL = URL(string: AppConstants.crownBeesURL)
-                        showSafari = true
+                        if let url = URL(string: AppConstants.crownBeesURL) {
+                            selectedURL = IdentifiableURL(url: url)
+                        }
                     }) {
                         HStack {
                             Image(systemName: "globe")
@@ -111,19 +111,18 @@ struct ResourcesView: View {
         }
         .background(AppConstants.surface.ignoresSafeArea())
         .navigationTitle("Resources")
-        .sheet(isPresented: $showSafari) {
-            if let url = currentURL {
-                SafariView(url: url)
-                    .ignoresSafeArea()
-            }
+        .sheet(item: $selectedURL) { item in
+            SafariView(url: item.url)
+                .ignoresSafeArea()
         }
     }
 
     @ViewBuilder
     private func resourceCard(icon: String, title: String, description: String, color: Color, urlString: String) -> some View {
         Button(action: {
-            currentURL = URL(string: urlString)
-            showSafari = true
+            if let url = URL(string: urlString) {
+                selectedURL = IdentifiableURL(url: url)
+            }
         }) {
             HStack(spacing: AppConstants.Spacing.md) {
                 Image(systemName: icon)
@@ -151,6 +150,12 @@ struct ResourcesView: View {
             .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.md))
         }
     }
+}
+
+// MARK: - Identifiable URL wrapper
+struct IdentifiableURL: Identifiable {
+    let id = UUID()
+    let url: URL
 }
 
 // MARK: - Safari View Wrapper
