@@ -41,7 +41,7 @@ struct LoginView: View {
                                     .font(.system(size: 38, weight: .bold))
                                     .tracking(-0.8)
                                     .foregroundStyle(.white)
-                                Text("Your Mason Bee Companion")
+                                Text("Your Solitary Bee Companion")
                                     .font(.subheadline)
                                     .foregroundStyle(.white.opacity(0.8))
                             }

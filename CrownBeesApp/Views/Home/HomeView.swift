@@ -26,7 +26,7 @@ struct HomeView: View {
                             .font(.system(size: 42, weight: .black))
                             .tracking(-1.5)
                             .foregroundStyle(.white)
-                        Text("Mason Bee Companions")
+                        Text("Solitary Bee Companions")
                             .font(.title3)
                             .foregroundStyle(.white.opacity(0.85))
                     }
@@ -44,7 +44,7 @@ struct HomeView: View {
                             .tracking(-0.5)
                             .foregroundStyle(AppConstants.onSurface)
 
-                        Text("Your mason bee companion app — content coming soon.")
+                        Text("Your solitary bee companion app — content coming soon.")
                             .font(.body)
                             .foregroundStyle(AppConstants.onSurfaceVariant)
                             .fixedSize(horizontal: false, vertical: true)

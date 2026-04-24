@@ -79,7 +79,7 @@ struct ResourcesView: View {
                         resourceCard(
                             icon: "star.fill",
                             title: "Getting Started",
-                            description: "New to mason bees? Start here.",
+                            description: "New to solitary bees? Start here.",
                             color: AppConstants.primary,
                             urlString: AppConstants.gettingStartedURL
                         )

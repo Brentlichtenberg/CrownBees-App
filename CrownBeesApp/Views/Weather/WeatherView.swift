@@ -358,13 +358,13 @@ struct WeatherView: View {
     private var activityTip: String {
         guard let w = service.currentWeather else { return "" }
         if w.isRainy        { return "Bees shelter during rain — they seal cell mud with their mandibles and wait." }
-        if w.temperature < 50 { return "Mason bees are inactive below 50°F. They won't forage until the air warms up." }
+        if w.temperature < 50 { return "Solitary bees are inactive below 50°F. They won't forage until the air warms up." }
         if w.temperature < 55 { return "Activity picks up above 55°F, when fruit tree bloom begins." }
         if w.windSpeed > 20   { return "High winds over 20 mph make navigation difficult. Bees stay close to home." }
         if w.windSpeed > 15   { return "Breezy conditions (\(Int(w.windSpeed)) mph) reduce foraging range." }
         if w.temperature > 95 { return "Very hot afternoon — bees may rest during peak heat and resume in the evening." }
         if w.uvIndex >= 8     { return "High UV and good warmth — near-perfect foraging conditions." }
-        return "Ideal foraging conditions. Your mason bees are working their 8–30 trips per cell."
+        return "Ideal foraging conditions. Your solitary bees are working their 8–30 trips per cell."
     }
 
     // MARK: - 7-Day Forecast
