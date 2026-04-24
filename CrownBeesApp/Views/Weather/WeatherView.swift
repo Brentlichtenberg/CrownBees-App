@@ -53,41 +53,43 @@ struct WeatherView: View {
         VStack(spacing: AppConstants.Spacing.sm) {
             HStack(spacing: AppConstants.Spacing.sm) {
                 Image(systemName: "magnifyingglass")
-                    .foregroundColor(AppConstants.darkGreen)
+                    .foregroundStyle(AppConstants.secondary)
                 TextField("City, state or zip code…", text: $searchText)
                     .submitLabel(.search)
                     .onSubmit { runSearch() }
                 if !searchText.isEmpty {
                     Button { searchText = "" } label: {
                         Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                     }
                 }
             }
-            .padding(AppConstants.Spacing.sm)
-            .background(Color(.systemBackground))
-            .cornerRadius(10)
-            .overlay(RoundedRectangle(cornerRadius: 10)
-                .stroke(AppConstants.darkGreen.opacity(0.3), lineWidth: 1))
+            .padding(AppConstants.Spacing.sm + 2)
+            .background(AppConstants.surfaceContainerLow)
+            .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.md))
+            .overlay(
+                RoundedRectangle(cornerRadius: AppConstants.Radius.md)
+                    .stroke(AppConstants.onSurface.opacity(0.12), lineWidth: 1)
+            )
 
             HStack(spacing: AppConstants.Spacing.sm) {
                 Button(action: runSearch) {
                     Label("Search", systemImage: "arrow.right.circle.fill")
                         .font(.subheadline.weight(.medium))
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 10)
-                        .background(AppConstants.darkGreen)
-                        .cornerRadius(10)
+                        .background(AppConstants.primary)
+                        .clipShape(Capsule())
                 }
                 Button(action: { service.requestLocation() }) {
                     Label("Use My Location", systemImage: "location.fill")
                         .font(.subheadline.weight(.medium))
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 10)
-                        .background(AppConstants.navyBlue)
-                        .cornerRadius(10)
+                        .background(AppConstants.secondary)
+                        .clipShape(Capsule())
                 }
             }
         }
@@ -140,10 +142,10 @@ struct WeatherView: View {
                 HStack(spacing: 6) {
                     Image(systemName: "location.circle")
                         .font(.caption)
-                        .foregroundColor(AppConstants.navyBlue)
+                        .foregroundColor(AppConstants.secondary)
                     Text("Search for your location above for personalised conditions.")
                         .font(.caption)
-                        .foregroundColor(AppConstants.navyBlue)
+                        .foregroundColor(AppConstants.secondary)
                 }
                 .padding(.top, 2)
             }
@@ -170,7 +172,7 @@ struct WeatherView: View {
         .padding(AppConstants.Spacing.lg)
         .background(Color(.systemBackground))
         .cornerRadius(16)
-        .shadow(color: .black.opacity(0.07), radius: 6, x: 0, y: 3)
+        .shadow(color: AppConstants.shadowColor.opacity(0.06), radius: 16, x: 0, y: 4)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
                 .stroke(advisory.accentColor.opacity(0.25), lineWidth: 1.5)
@@ -246,7 +248,7 @@ struct WeatherView: View {
         .padding(AppConstants.Spacing.lg)
         .background(Color(.systemBackground))
         .cornerRadius(16)
-        .shadow(color: .black.opacity(0.07), radius: 6, x: 0, y: 3)
+        .shadow(color: AppConstants.shadowColor.opacity(0.06), radius: 16, x: 0, y: 4)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
                 .stroke(readiness.color.opacity(0.3), lineWidth: 1)
@@ -307,7 +309,7 @@ struct WeatherView: View {
             .padding(AppConstants.Spacing.lg)
             .background(Color(.systemBackground))
             .cornerRadius(16)
-            .shadow(color: .black.opacity(0.07), radius: 6, x: 0, y: 3)
+            .shadow(color: AppConstants.shadowColor.opacity(0.06), radius: 16, x: 0, y: 4)
         )
     }
 
@@ -356,13 +358,13 @@ struct WeatherView: View {
     private var activityTip: String {
         guard let w = service.currentWeather else { return "" }
         if w.isRainy        { return "Bees shelter during rain — they seal cell mud with their mandibles and wait." }
-        if w.temperature < 50 { return "Mason bees are inactive below 50°F. They won't forage until the air warms up." }
+        if w.temperature < 50 { return "Solitary bees are inactive below 50°F. They won't forage until the air warms up." }
         if w.temperature < 55 { return "Activity picks up above 55°F, when fruit tree bloom begins." }
         if w.windSpeed > 20   { return "High winds over 20 mph make navigation difficult. Bees stay close to home." }
         if w.windSpeed > 15   { return "Breezy conditions (\(Int(w.windSpeed)) mph) reduce foraging range." }
         if w.temperature > 95 { return "Very hot afternoon — bees may rest during peak heat and resume in the evening." }
         if w.uvIndex >= 8     { return "High UV and good warmth — near-perfect foraging conditions." }
-        return "Ideal foraging conditions. Your mason bees are working their 8–30 trips per cell."
+        return "Ideal foraging conditions. Your solitary bees are working their 8–30 trips per cell."
     }
 
     // MARK: - 7-Day Forecast
@@ -389,7 +391,7 @@ struct WeatherView: View {
         .padding(AppConstants.Spacing.lg)
         .background(Color(.systemBackground))
         .cornerRadius(16)
-        .shadow(color: .black.opacity(0.07), radius: 6, x: 0, y: 3)
+        .shadow(color: AppConstants.shadowColor.opacity(0.06), radius: 16, x: 0, y: 4)
     }
 
     private func forecastRow(_ day: AppDayWeather) -> some View {
@@ -457,7 +459,7 @@ struct WeatherView: View {
         .frame(maxWidth: .infinity)
         .background(Color(.systemBackground))
         .cornerRadius(14)
-        .shadow(color: .black.opacity(0.06), radius: 6, x: 0, y: 3)
+        .shadow(color: AppConstants.shadowColor.opacity(0.05), radius: 16, x: 0, y: 4)
     }
 
     // MARK: - Helpers

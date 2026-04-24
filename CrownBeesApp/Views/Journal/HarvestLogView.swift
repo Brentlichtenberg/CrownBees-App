@@ -6,44 +6,50 @@ struct HarvestLogView: View {
     @State private var numberOfBees = ""
     @State private var notes = ""
     @State private var showSaved = false
-    
+
     var body: some View {
         ScrollView {
-            VStack(spacing: 20) {
+            VStack(spacing: AppConstants.Spacing.lg) {
                 // Entry Form
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: AppConstants.Spacing.md) {
                     Text("Log a Harvest")
                         .font(.headline)
-                        .foregroundColor(AppConstants.darkGreen)
-                    
+                        .foregroundStyle(AppConstants.secondary)
+
                     DatePicker("Date of Harvest", selection: $date, displayedComponents: .date)
                         .datePickerStyle(.compact)
-                        .foregroundColor(AppConstants.darkText)
-                    
-                    VStack(alignment: .leading, spacing: 4) {
+                        .foregroundStyle(AppConstants.onSurface)
+
+                    VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
                         Text("Number of Bees Harvested")
                             .font(.caption)
-                            .foregroundColor(AppConstants.darkText.opacity(0.7))
+                            .foregroundStyle(AppConstants.onSurfaceVariant)
                         TextField("Enter number", text: $numberOfBees)
                             .keyboardType(.numberPad)
-                            .padding(12)
-                            .background(Color.white)
-                            .cornerRadius(10)
-                            .shadow(color: .black.opacity(0.04), radius: 3, x: 0, y: 1)
+                            .padding(AppConstants.Spacing.sm)
+                            .background(AppConstants.surfaceContainerLow)
+                            .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.md))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: AppConstants.Radius.md)
+                                    .stroke(AppConstants.onSurface.opacity(0.12), lineWidth: 1)
+                            )
                     }
-                    
-                    VStack(alignment: .leading, spacing: 4) {
+
+                    VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
                         Text("Notes (optional)")
                             .font(.caption)
-                            .foregroundColor(AppConstants.darkText.opacity(0.7))
+                            .foregroundStyle(AppConstants.onSurfaceVariant)
                         TextField("Add notes...", text: $notes, axis: .vertical)
                             .lineLimit(3...6)
-                            .padding(12)
-                            .background(Color.white)
-                            .cornerRadius(10)
-                            .shadow(color: .black.opacity(0.04), radius: 3, x: 0, y: 1)
+                            .padding(AppConstants.Spacing.sm)
+                            .background(AppConstants.surfaceContainerLow)
+                            .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.md))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: AppConstants.Radius.md)
+                                    .stroke(AppConstants.onSurface.opacity(0.12), lineWidth: 1)
+                            )
                     }
-                    
+
                     Button(action: saveEntry) {
                         HStack {
                             Image(systemName: "checkmark.circle.fill")
@@ -52,84 +58,94 @@ struct HarvestLogView: View {
                         }
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(AppConstants.navyBlue)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
+                        .background(
+                            LinearGradient(
+                                colors: [AppConstants.primary, AppConstants.primaryContainer],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .foregroundStyle(.white)
+                        .clipShape(Capsule())
                     }
-                    
+
                     if showSaved {
                         HStack {
                             Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
+                                .foregroundStyle(AppConstants.secondary)
                             Text("Entry saved!")
-                                .foregroundColor(.green)
+                                .foregroundStyle(AppConstants.secondary)
                                 .font(.caption)
                         }
                     }
                 }
-                .padding(20)
-                .background(Color.white)
-                .cornerRadius(16)
-                .shadow(color: .black.opacity(0.06), radius: 6, x: 0, y: 3)
-                
+                .padding(AppConstants.Spacing.lg)
+                .background(AppConstants.surfaceContainerLowest)
+                .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.lg))
+                .shadow(color: AppConstants.shadowColor.opacity(0.06), radius: 20, x: 0, y: 6)
+
                 // Past Entries
                 if !entries.isEmpty {
-                    VStack(alignment: .leading, spacing: 12) {
+                    VStack(alignment: .leading, spacing: AppConstants.Spacing.sm) {
                         Text("Past Entries")
                             .font(.headline)
-                            .foregroundColor(AppConstants.darkGreen)
-                        
+                            .foregroundStyle(AppConstants.secondary)
+
                         ForEach(entries.reversed()) { entry in
                             entryRow(entry: entry)
                         }
                     }
-                    .padding(20)
-                    .background(Color.white)
-                    .cornerRadius(16)
-                    .shadow(color: .black.opacity(0.06), radius: 6, x: 0, y: 3)
+                    .padding(AppConstants.Spacing.lg)
+                    .background(AppConstants.surfaceContainerLowest)
+                    .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.lg))
+                    .shadow(color: AppConstants.shadowColor.opacity(0.06), radius: 20, x: 0, y: 6)
                 }
             }
-            .padding(16)
+            .padding(AppConstants.Spacing.md)
         }
-        .background(AppConstants.beige)
+        .background(AppConstants.surface)
         .onAppear {
             entries = StorageService.shared.loadHarvestEntries()
         }
     }
-    
+
     @ViewBuilder
     private func entryRow(entry: HarvestEntry) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
             HStack {
                 Image(systemName: "calendar")
-                    .foregroundColor(AppConstants.navyBlue)
+                    .foregroundStyle(AppConstants.secondary)
                 Text(entry.date, style: .date)
                     .font(.subheadline)
                     .fontWeight(.medium)
-                    .foregroundColor(AppConstants.darkText)
+                    .foregroundStyle(AppConstants.onSurface)
                 Spacer()
-                HStack(spacing: 4) {
+                HStack(spacing: AppConstants.Spacing.xs) {
                     Image(systemName: "hexagon.fill")
-                        .foregroundColor(AppConstants.orange)
+                        .foregroundStyle(AppConstants.primary)
                         .font(.caption)
-                    Text("\(entry.numberOfBees) bees")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(AppConstants.darkText)
+                    Text("\(entry.numberOfBees) cocoons")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .foregroundStyle(AppConstants.secondary)
+                        .padding(.horizontal, AppConstants.Spacing.sm)
+                        .padding(.vertical, AppConstants.Spacing.xs)
+                        .background(AppConstants.secondaryContainer)
+                        .clipShape(Capsule())
                 }
             }
             if !entry.notes.isEmpty {
                 Text(entry.notes)
                     .font(.caption)
-                    .foregroundColor(AppConstants.darkText.opacity(0.7))
+                    .foregroundStyle(AppConstants.onSurfaceVariant)
             }
         }
-        .padding(12)
-        .background(AppConstants.beige)
-        .cornerRadius(10)
-        Divider()
+        .padding(AppConstants.Spacing.sm)
+        .background(AppConstants.surfaceContainerLow)
+        .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.md))
+        .shadow(color: AppConstants.shadowColor.opacity(0.04), radius: 8, x: 0, y: 2)
     }
-    
+
     private func saveEntry() {
         guard let count = Int(numberOfBees), count > 0 else { return }
         let entry = HarvestEntry(date: date, numberOfBees: count, notes: notes)
