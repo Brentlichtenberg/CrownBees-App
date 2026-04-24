@@ -22,6 +22,22 @@ struct MainAppView: View {
                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
+                    if selectedScreen != .home {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button(action: {
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    selectedScreen = .home
+                                }
+                            }) {
+                                HStack(spacing: 4) {
+                                    Image(systemName: "chevron.left")
+                                        .fontWeight(.semibold)
+                                    Text("Home")
+                                }
+                                .foregroundStyle(AppConstants.primary)
+                            }
+                        }
+                    }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         MenuButton(isMenuOpen: $isMenuOpen)
                     }
