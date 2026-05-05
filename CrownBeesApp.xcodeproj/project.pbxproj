@@ -21,9 +21,9 @@
 		AA00020000000000000000FF9 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FF9 /* StorageService.swift */; };
 		AA00020000000000000000FFA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FFA /* LoginView.swift */; };
 		AA00020000000000000000FFB /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FFB /* RegisterView.swift */; };
-		AA00020000000000000000FFC /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FFC /* SideMenuView.swift */; };
-		AA00020000000000000000FFD /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FFD /* MenuButton.swift */; };
 		AA00020000000000000000FFE /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FFE /* MainAppView.swift */; };
+		AA00020000000000000000FFF /* FloatingTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FFF /* FloatingTabBar.swift */; };
+		AB00020000000000000001AA /* GlassInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB00010000000000000001AA /* GlassInputField.swift */; };
 		AA00020000000000000001F0 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000001F0 /* WeatherView.swift */; };
 		AA00020000000000000001F1 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000001F1 /* JournalView.swift */; };
 		AA00020000000000000001F2 /* ReleaseLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000001F2 /* ReleaseLogView.swift */; };
@@ -48,9 +48,9 @@
 		AA00010000000000000000FF9 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		AA00010000000000000000FFA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		AA00010000000000000000FFB /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
-		AA00010000000000000000FFC /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
-		AA00010000000000000000FFD /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		AA00010000000000000000FFE /* MainAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppView.swift; sourceTree = "<group>"; };
+		AA00010000000000000000FFF /* FloatingTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTabBar.swift; sourceTree = "<group>"; };
+		AB00010000000000000001AA /* GlassInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassInputField.swift; sourceTree = "<group>"; };
 		AA00010000000000000001F0 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		AA00010000000000000001F1 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		AA00010000000000000001F2 /* ReleaseLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseLogView.swift; sourceTree = "<group>"; };
@@ -177,9 +177,9 @@
 		AA00040000000000000000FA /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				AA00010000000000000000FFC /* SideMenuView.swift */,
-				AA00010000000000000000FFD /* MenuButton.swift */,
 				AA00010000000000000000FFE /* MainAppView.swift */,
+				AA00010000000000000000FFF /* FloatingTabBar.swift */,
+				AB00010000000000000001AA /* GlassInputField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -291,9 +291,9 @@
 				AA00020000000000000000FF9 /* StorageService.swift in Sources */,
 				AA00020000000000000000FFA /* LoginView.swift in Sources */,
 				AA00020000000000000000FFB /* RegisterView.swift in Sources */,
-				AA00020000000000000000FFC /* SideMenuView.swift in Sources */,
-				AA00020000000000000000FFD /* MenuButton.swift in Sources */,
 				AA00020000000000000000FFE /* MainAppView.swift in Sources */,
+				AA00020000000000000000FFF /* FloatingTabBar.swift in Sources */,
+				AB00020000000000000001AA /* GlassInputField.swift in Sources */,
 				AA00020000000000000000FF /* HomeView.swift in Sources */,
 				AA00020000000000000001F0 /* WeatherView.swift in Sources */,
 				AA00020000000000000001F1 /* JournalView.swift in Sources */,
@@ -359,7 +359,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -415,7 +415,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -427,9 +427,9 @@
 		AA00060000000000000000F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSET_CATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSET_CATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSTET_CATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CrownBeesApp/CrownBeesApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -437,7 +437,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = CrownBeesApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crownbees.CrownBeesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -452,7 +452,7 @@
 		AA00060000000000000000F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSET_CATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSET_CATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CrownBeesApp/CrownBeesApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -461,7 +461,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = CrownBeesApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crownbees.CrownBeesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

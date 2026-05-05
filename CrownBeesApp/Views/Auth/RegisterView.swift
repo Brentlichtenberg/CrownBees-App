@@ -11,110 +11,103 @@ struct RegisterView: View {
 
     var body: some View {
         ZStack {
-            AppConstants.surface.ignoresSafeArea()
+            LinearGradient(
+                colors: [Color(hex: "#1a3d2a"), Color(hex: "#4a7c5a")],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
 
             ScrollView {
                 VStack(spacing: AppConstants.Spacing.xl) {
-
-                    // MARK: - Header
-                    VStack(spacing: AppConstants.Spacing.sm) {
-                        ZStack {
-                            Circle()
-                                .fill(AppConstants.primary.opacity(0.12))
-                                .frame(width: 72, height: 72)
-                            Image(systemName: "hexagon.fill")
-                                .font(.system(size: 36))
-                                .foregroundStyle(AppConstants.primary)
-                        }
-                        Text("Create Account")
-                            .font(.system(size: 30, weight: .bold))
-                            .tracking(-0.5)
-                            .foregroundStyle(AppConstants.onSurface)
-                        Text("Join the Crown Bees community")
-                            .font(.subheadline)
-                            .foregroundStyle(AppConstants.onSurfaceVariant)
-                    }
-                    .padding(.top, AppConstants.Spacing.xxl)
-
-                    // MARK: - Form Card
-                    VStack(spacing: AppConstants.Spacing.md) {
-                        ghostField(placeholder: "Email", text: $email)
-                            .textInputAutocapitalization(.never)
-                            .keyboardType(.emailAddress)
-                            .autocorrectionDisabled()
-                        ghostSecureField(placeholder: "Password", text: $password)
-                        ghostSecureField(placeholder: "Confirm Password", text: $confirmPassword)
-                        ghostField(placeholder: "Zip Code", text: $zipCode)
-                            .keyboardType(.numberPad)
-
-                        if !errorMessage.isEmpty {
-                            Text(errorMessage)
-                                .font(.caption)
-                                .foregroundStyle(.red)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-
-                        Button(action: register) {
-                            Text("Create Account")
-                                .fontWeight(.semibold)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, AppConstants.Spacing.md)
-                                .background(
-                                    LinearGradient(
-                                        colors: [AppConstants.primary, AppConstants.primaryContainer],
-                                        startPoint: .leading,
-                                        endPoint: .trailing
-                                    )
-                                )
-                                .foregroundStyle(.white)
-                                .clipShape(Capsule())
-                        }
-
-                        Button(action: { dismiss() }) {
-                            HStack(spacing: 4) {
-                                Text("Already have an account?")
-                                    .foregroundStyle(AppConstants.onSurfaceVariant)
-                                Text("Log In")
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(AppConstants.secondary)
-                            }
-                            .font(.subheadline)
-                        }
-                    }
-                    .padding(AppConstants.Spacing.lg)
-                    .background(AppConstants.surfaceContainerLowest)
-                    .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.lg))
-                    .shadow(color: AppConstants.shadowColor.opacity(0.07), radius: 20, x: 0, y: 6)
-                    .padding(.horizontal, AppConstants.Spacing.md)
+                    headerSection
+                    registerCard
                 }
+                .padding(.bottom, AppConstants.Spacing.xxl)
             }
         }
         .navigationBarBackButtonHidden(false)
+        .toolbarColorScheme(.dark, for: .navigationBar)
     }
 
-    @ViewBuilder
-    private func ghostField(placeholder: String, text: Binding<String>) -> some View {
-        TextField(placeholder, text: text)
-            .padding(AppConstants.Spacing.md)
-            .background(AppConstants.surfaceContainerLow)
-            .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.md))
-            .overlay(
-                RoundedRectangle(cornerRadius: AppConstants.Radius.md)
-                    .stroke(AppConstants.onSurface.opacity(0.12), lineWidth: 1)
-            )
+    // MARK: - Subviews
+
+    private var headerSection: some View {
+        VStack(spacing: AppConstants.Spacing.sm) {
+            ZStack {
+                Circle()
+                    .fill(AppConstants.primary.opacity(0.18))
+                    .frame(width: 72, height: 72)
+                Image(systemName: "hexagon.fill")
+                    .font(.system(size: 36))
+                    .foregroundStyle(AppConstants.primary)
+            }
+            Text("Create Account")
+                .font(.system(size: 30, weight: .bold))
+                .tracking(-0.5)
+                .foregroundStyle(.white)
+            Text("Join the Crown Bees community")
+                .font(.subheadline)
+                .foregroundStyle(.white.opacity(0.7))
+        }
+        .padding(.top, AppConstants.Spacing.xxl)
     }
 
-    @ViewBuilder
-    private func ghostSecureField(placeholder: String, text: Binding<String>) -> some View {
-        SecureField(placeholder, text: text)
-            .padding(AppConstants.Spacing.md)
-            .background(AppConstants.surfaceContainerLow)
-            .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.md))
-            .overlay(
-                RoundedRectangle(cornerRadius: AppConstants.Radius.md)
-                    .stroke(AppConstants.onSurface.opacity(0.12), lineWidth: 1)
-            )
+    private var registerCard: some View {
+        GlassEffectContainer {
+            VStack(spacing: AppConstants.Spacing.md) {
+                GlassInputField(placeholder: "Email", text: $email)
+                    .textInputAutocapitalization(.never)
+                    .keyboardType(.emailAddress)
+                    .autocorrectionDisabled()
+
+                GlassInputField(placeholder: "Password", text: $password, isSecure: true)
+                GlassInputField(placeholder: "Confirm Password", text: $confirmPassword, isSecure: true)
+
+                GlassInputField(placeholder: "Zip Code", text: $zipCode)
+                    .keyboardType(.numberPad)
+
+                if !errorMessage.isEmpty {
+                    Text(errorMessage)
+                        .font(.caption)
+                        .foregroundStyle(.red)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+
+                Button(action: register) {
+                    Text("Create Account")
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, AppConstants.Spacing.md)
+                        .background(
+                            LinearGradient(
+                                colors: [AppConstants.primary, AppConstants.primaryContainer],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .foregroundStyle(.white)
+                        .clipShape(Capsule())
+                }
+
+                Button(action: { dismiss() }) {
+                    HStack(spacing: 4) {
+                        Text("Already have an account?")
+                            .foregroundStyle(.white.opacity(0.7))
+                        Text("Log In")
+                            .fontWeight(.semibold)
+                            .foregroundStyle(AppConstants.primary)
+                    }
+                    .font(.subheadline)
+                }
+            }
+            .padding(AppConstants.Spacing.lg)
+            .glassEffect(in: .rect(cornerRadius: AppConstants.Radius.lg))
+        }
+        .padding(.horizontal, AppConstants.Spacing.md)
     }
+
+    // MARK: - Actions
 
     private func register() {
         guard !email.isEmpty, !password.isEmpty, !confirmPassword.isEmpty, !zipCode.isEmpty else {

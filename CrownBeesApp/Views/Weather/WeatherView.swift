@@ -43,7 +43,14 @@ struct WeatherView: View {
             }
             .padding(AppConstants.Spacing.md)
         }
-        .background(AppConstants.beige.ignoresSafeArea())
+        .background(
+            LinearGradient(
+                colors: [Color(hex: "#1a3d2a"), Color(hex: "#4a7c5a")],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+        )
         .navigationTitle("Weather")
     }
 
@@ -53,24 +60,20 @@ struct WeatherView: View {
         VStack(spacing: AppConstants.Spacing.sm) {
             HStack(spacing: AppConstants.Spacing.sm) {
                 Image(systemName: "magnifyingglass")
-                    .foregroundStyle(AppConstants.secondary)
+                    .foregroundStyle(.white.opacity(0.8))
                 TextField("City, state or zip code…", text: $searchText)
                     .submitLabel(.search)
+                    .foregroundStyle(.white)
                     .onSubmit { runSearch() }
                 if !searchText.isEmpty {
                     Button { searchText = "" } label: {
                         Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.white.opacity(0.7))
                     }
                 }
             }
             .padding(AppConstants.Spacing.sm + 2)
-            .background(AppConstants.surfaceContainerLow)
-            .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.md))
-            .overlay(
-                RoundedRectangle(cornerRadius: AppConstants.Radius.md)
-                    .stroke(AppConstants.onSurface.opacity(0.12), lineWidth: 1)
-            )
+            .glassEffect(in: .rect(cornerRadius: AppConstants.Radius.md))
 
             HStack(spacing: AppConstants.Spacing.sm) {
                 Button(action: runSearch) {
@@ -98,85 +101,76 @@ struct WeatherView: View {
     // MARK: - Dave's Seasonal Advisory Card
 
     private var daveAdvisoryCard: some View {
-        VStack(alignment: .leading, spacing: AppConstants.Spacing.sm) {
+        GlassEffectContainer {
+            VStack(alignment: .leading, spacing: AppConstants.Spacing.sm) {
 
-            // Phase badge + icon header
-            HStack(spacing: AppConstants.Spacing.sm) {
-                ZStack {
-                    Circle()
-                        .fill(advisory.accentColor)
-                        .frame(width: 44, height: 44)
-                    Image(systemName: advisory.sfIcon)
-                        .font(.system(size: 20, weight: .semibold))
-                        .foregroundColor(.white)
+                HStack(spacing: AppConstants.Spacing.sm) {
+                    ZStack {
+                        Circle()
+                            .fill(advisory.accentColor)
+                            .frame(width: 44, height: 44)
+                        Image(systemName: advisory.sfIcon)
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(.white)
+                    }
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(advisory.phaseLabel.uppercased())
+                            .font(.caption.weight(.bold))
+                            .foregroundColor(advisory.accentColor)
+                            .tracking(0.8)
+                        Text("Dave's Bee Report")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                    }
+                    Spacer()
                 }
 
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(advisory.phaseLabel.uppercased())
-                        .font(.caption.weight(.bold))
-                        .foregroundColor(advisory.accentColor)
-                        .tracking(0.8)
-                    Text("Dave's Bee Report")
-                        .font(.headline)
-                        .foregroundColor(AppConstants.darkText)
+                Divider().overlay(.white.opacity(0.3))
+
+                Text(advisory.headline)
+                    .font(.title3.weight(.bold))
+                    .foregroundColor(advisory.accentColor)
+
+                Text(advisory.body)
+                    .font(.subheadline)
+                    .foregroundColor(.white.opacity(0.9))
+                    .lineSpacing(4)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                if !advisory.hasWeatherData {
+                    HStack(spacing: 6) {
+                        Image(systemName: "location.circle")
+                            .font(.caption)
+                            .foregroundColor(.white.opacity(0.7))
+                        Text("Search for your location above for personalised conditions.")
+                            .font(.caption)
+                            .foregroundColor(.white.opacity(0.7))
+                    }
+                    .padding(.top, 2)
                 }
-                Spacer()
-            }
 
-            Divider()
+                Divider().overlay(.white.opacity(0.3))
 
-            // Headline
-            Text(advisory.headline)
-                .font(.title3.weight(.bold))
-                .foregroundColor(advisory.accentColor)
-
-            // Body copy
-            Text(advisory.body)
-                .font(.subheadline)
-                .foregroundColor(AppConstants.darkText)
-                .lineSpacing(4)
-                .fixedSize(horizontal: false, vertical: true)
-
-            // No-weather nudge
-            if !advisory.hasWeatherData {
-                HStack(spacing: 6) {
-                    Image(systemName: "location.circle")
-                        .font(.caption)
-                        .foregroundColor(AppConstants.secondary)
-                    Text("Search for your location above for personalised conditions.")
-                        .font(.caption)
-                        .foregroundColor(AppConstants.secondary)
+                HStack(spacing: 0) {
+                    Image(systemName: "person.fill")
+                        .font(.caption2)
+                        .foregroundColor(.white.opacity(0.6))
+                    Text(" Dave Hunter · Crown Bees")
+                        .font(.caption2)
+                        .foregroundColor(.white.opacity(0.6))
+                    Spacer()
+                    Image(systemName: "book.closed.fill")
+                        .font(.caption2)
+                        .foregroundColor(.white.opacity(0.6))
+                    Text(" The Mason Bee Revolution")
+                        .font(.caption2)
+                        .foregroundColor(.white.opacity(0.6))
                 }
-                .padding(.top, 2)
             }
-
-            Divider()
-
-            // Attribution footer
-            HStack(spacing: 0) {
-                Image(systemName: "person.fill")
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-                Text(" Dave Hunter · Crown Bees")
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-                Spacer()
-                Image(systemName: "book.closed.fill")
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-                Text(" The Mason Bee Revolution")
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-            }
+            .padding(AppConstants.Spacing.lg)
+            .glassEffect(in: .rect(cornerRadius: 16))
         }
-        .padding(AppConstants.Spacing.lg)
-        .background(Color(.systemBackground))
-        .cornerRadius(16)
-        .shadow(color: AppConstants.shadowColor.opacity(0.06), radius: 16, x: 0, y: 4)
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(advisory.accentColor.opacity(0.25), lineWidth: 1.5)
-        )
     }
 
     // MARK: - Release Window Card
@@ -187,143 +181,131 @@ struct WeatherView: View {
         let isLeafCutter = advisory.phase == .summerLeafCutter
         let cardTitle = isLeafCutter ? "Leaf Cutter Release Window" : "Spring Release Window"
 
-        return VStack(alignment: .leading, spacing: AppConstants.Spacing.md) {
+        return GlassEffectContainer {
+            VStack(alignment: .leading, spacing: AppConstants.Spacing.md) {
 
-            // Title + status badge
-            HStack {
-                Image(systemName: readiness.icon)
-                    .foregroundColor(readiness.color)
-                Text(cardTitle)
-                    .font(.headline)
-                    .foregroundColor(AppConstants.darkText)
-                Spacer()
-                Text(readiness.label)
-                    .font(.caption.weight(.bold))
-                    .foregroundColor(readiness.color)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 4)
-                    .background(readiness.color.opacity(0.12))
-                    .cornerRadius(8)
-            }
-
-            // 7-day warm day dots
-            HStack(spacing: 8) {
-                ForEach(Array(advisory.warmForecastDays.enumerated()), id: \.offset) { i, isWarm in
-                    VStack(spacing: 4) {
-                        Circle()
-                            .fill(isWarm ? readiness.color : Color(.systemGray4))
-                            .frame(width: 20, height: 20)
-                            .overlay(
-                                isWarm ? Circle().stroke(readiness.color.opacity(0.4), lineWidth: 1.5) : nil
-                            )
-                        Text(forecastDayAbbrev(offset: i))
-                            .font(.system(size: 9, weight: .medium))
-                            .foregroundColor(.secondary)
-                    }
+                HStack {
+                    Image(systemName: readiness.icon)
+                        .foregroundColor(readiness.color)
+                    Text(cardTitle)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    Spacer()
+                    Text(readiness.label)
+                        .font(.caption.weight(.bold))
+                        .foregroundColor(readiness.color)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 4)
+                        .background(readiness.color.opacity(0.2))
+                        .cornerRadius(8)
                 }
-                Spacer()
-            }
 
-            // Summary line
-            HStack(spacing: 4) {
-                Image(systemName: warmCount >= 3 ? "checkmark.circle.fill" : "info.circle")
-                    .font(.caption)
-                    .foregroundColor(readiness.color)
-                Text("\(warmCount) of 7 forecast days above \(Int(advisory.tempThreshold))°F")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
+                HStack(spacing: 8) {
+                    ForEach(Array(advisory.warmForecastDays.enumerated()), id: \.offset) { i, isWarm in
+                        VStack(spacing: 4) {
+                            Circle()
+                                .fill(isWarm ? readiness.color : Color(.systemGray4))
+                                .frame(width: 20, height: 20)
+                                .overlay(
+                                    isWarm ? Circle().stroke(readiness.color.opacity(0.4), lineWidth: 1.5) : nil
+                                )
+                            Text(forecastDayAbbrev(offset: i))
+                                .font(.system(size: 9, weight: .medium))
+                                .foregroundColor(.white.opacity(0.7))
+                        }
+                    }
+                    Spacer()
+                }
 
-            // Dave's quoted tip
-            Text(BeeSeasonalAdvisor.releaseTip(
-                phase: advisory.phase,
-                readiness: advisory.releaseReadiness
-            ))
-            .font(.caption)
-            .italic()
-            .foregroundColor(AppConstants.darkText.opacity(0.75))
-            .lineSpacing(3)
-            .fixedSize(horizontal: false, vertical: true)
+                HStack(spacing: 4) {
+                    Image(systemName: warmCount >= 3 ? "checkmark.circle.fill" : "info.circle")
+                        .font(.caption)
+                        .foregroundColor(readiness.color)
+                    Text("\(warmCount) of 7 forecast days above \(Int(advisory.tempThreshold))°F")
+                        .font(.caption)
+                        .foregroundColor(.white.opacity(0.75))
+                }
+
+                Text(BeeSeasonalAdvisor.releaseTip(
+                    phase: advisory.phase,
+                    readiness: advisory.releaseReadiness
+                ))
+                .font(.caption)
+                .italic()
+                .foregroundColor(.white.opacity(0.8))
+                .lineSpacing(3)
+                .fixedSize(horizontal: false, vertical: true)
+            }
+            .padding(AppConstants.Spacing.lg)
+            .glassEffect(in: .rect(cornerRadius: 16))
         }
-        .padding(AppConstants.Spacing.lg)
-        .background(Color(.systemBackground))
-        .cornerRadius(16)
-        .shadow(color: AppConstants.shadowColor.opacity(0.06), radius: 16, x: 0, y: 4)
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(readiness.color.opacity(0.3), lineWidth: 1)
-        )
     }
 
     // MARK: - Current Conditions
 
+    @ViewBuilder
     private var currentConditionsCard: some View {
-        guard let weather = service.currentWeather else { return AnyView(EmptyView()) }
-
-        return AnyView(
-            VStack(spacing: AppConstants.Spacing.md) {
-                // Location + temperature header
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        if !service.locationName.isEmpty {
-                            Text(service.locationName)
-                                .font(.title2.weight(.bold))
-                                .foregroundColor(AppConstants.darkGreen)
+        if let weather = service.currentWeather {
+            GlassEffectContainer {
+                VStack(spacing: AppConstants.Spacing.md) {
+                    HStack(alignment: .top) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            if !service.locationName.isEmpty {
+                                Text(service.locationName)
+                                    .font(.title2.weight(.bold))
+                                    .foregroundColor(.white)
+                            }
+                            Text(weather.conditionLabel)
+                                .font(.subheadline)
+                                .foregroundColor(.white.opacity(0.7))
                         }
-                        Text(weather.conditionLabel)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+                        Spacer()
+                        HStack(alignment: .top, spacing: 2) {
+                            Text("\(Int(weather.temperature))")
+                                .font(.system(size: 54, weight: .thin))
+                            Text("°F")
+                                .font(.title2)
+                                .padding(.top, 8)
+                        }
+                        .foregroundColor(.white)
                     }
-                    Spacer()
-                    HStack(alignment: .top, spacing: 2) {
-                        Text("\(Int(weather.temperature))")
-                            .font(.system(size: 54, weight: .thin))
-                        Text("°F")
-                            .font(.title2)
-                            .padding(.top, 8)
+
+                    HStack {
+                        Image(systemName: weather.sfSymbolName)
+                            .font(.system(size: 48))
+                            .symbolRenderingMode(.multicolor)
+                        Spacer()
                     }
-                    .foregroundColor(AppConstants.darkText)
-                }
 
-                // Large weather icon
-                HStack {
-                    Image(systemName: weather.sfSymbolName)
-                        .font(.system(size: 48))
-                        .symbolRenderingMode(.multicolor)
-                    Spacer()
-                }
+                    Divider().overlay(.white.opacity(0.3))
 
-                Divider()
-
-                // Detail grid
-                HStack(spacing: 0) {
-                    detailCell(icon: "humidity.fill",       label: "Humidity",   value: "\(weather.humidity)%")
-                    Spacer()
-                    detailCell(icon: "wind",                label: "Wind",       value: "\(Int(weather.windSpeed)) mph")
-                    Spacer()
-                    detailCell(icon: "thermometer.medium",  label: "Feels Like", value: "\(Int(weather.apparentTemperature))°F")
-                    Spacer()
-                    detailCell(icon: "sun.max.fill",        label: "UV Index",   value: "\(weather.uvIndex)")
+                    HStack(spacing: 0) {
+                        detailCell(icon: "humidity.fill",       label: "Humidity",   value: "\(weather.humidity)%")
+                        Spacer()
+                        detailCell(icon: "wind",                label: "Wind",       value: "\(Int(weather.windSpeed)) mph")
+                        Spacer()
+                        detailCell(icon: "thermometer.medium",  label: "Feels Like", value: "\(Int(weather.apparentTemperature))°F")
+                        Spacer()
+                        detailCell(icon: "sun.max.fill",        label: "UV Index",   value: "\(weather.uvIndex)")
+                    }
                 }
+                .padding(AppConstants.Spacing.lg)
+                .glassEffect(in: .rect(cornerRadius: 16))
             }
-            .padding(AppConstants.Spacing.lg)
-            .background(Color(.systemBackground))
-            .cornerRadius(16)
-            .shadow(color: AppConstants.shadowColor.opacity(0.06), radius: 16, x: 0, y: 4)
-        )
+        }
     }
 
     private func detailCell(icon: String, label: String, value: String) -> some View {
         VStack(spacing: 4) {
             Image(systemName: icon)
                 .font(.system(size: 20))
-                .foregroundColor(AppConstants.darkGreen)
+                .foregroundColor(.white.opacity(0.85))
             Text(value)
                 .font(.subheadline.weight(.semibold))
-                .foregroundColor(AppConstants.darkText)
+                .foregroundColor(.white)
             Text(label)
                 .font(.caption2)
-                .foregroundColor(.secondary)
+                .foregroundColor(.white.opacity(0.7))
         }
     }
 
@@ -341,18 +323,13 @@ struct WeatherView: View {
                     .foregroundColor(activity.color)
                 Text(activityTip)
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.white.opacity(0.75))
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer()
         }
         .padding(AppConstants.Spacing.md)
-        .background(activity.color.opacity(0.1))
-        .cornerRadius(12)
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(activity.color.opacity(0.25), lineWidth: 1)
-        )
+        .glassEffect(in: .rect(cornerRadius: 12))
     }
 
     private var activityTip: String {
@@ -367,31 +344,29 @@ struct WeatherView: View {
         return "Ideal foraging conditions. Your solitary bees are working their 8–30 trips per cell."
     }
 
-    // MARK: - 7-Day Forecast
-
     private var forecastCard: some View {
-        VStack(alignment: .leading, spacing: AppConstants.Spacing.sm) {
-            HStack {
-                Text("7-Day Forecast")
-                    .font(.headline)
-                    .foregroundColor(AppConstants.darkGreen)
-                Spacer()
-                Text("Bee Activity")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
+        GlassEffectContainer {
+            VStack(alignment: .leading, spacing: AppConstants.Spacing.sm) {
+                HStack {
+                    Text("7-Day Forecast")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    Spacer()
+                    Text("Bee Activity")
+                        .font(.caption)
+                        .foregroundColor(.white.opacity(0.7))
+                }
 
-            ForEach(service.dailyForecast, id: \.date) { day in
-                forecastRow(day)
-                if day.date != service.dailyForecast.last?.date {
-                    Divider()
+                ForEach(service.dailyForecast, id: \.date) { day in
+                    forecastRow(day)
+                    if day.date != service.dailyForecast.last?.date {
+                        Divider().overlay(.white.opacity(0.2))
+                    }
                 }
             }
+            .padding(AppConstants.Spacing.lg)
+            .glassEffect(in: .rect(cornerRadius: 16))
         }
-        .padding(AppConstants.Spacing.lg)
-        .background(Color(.systemBackground))
-        .cornerRadius(16)
-        .shadow(color: AppConstants.shadowColor.opacity(0.06), radius: 16, x: 0, y: 4)
     }
 
     private func forecastRow(_ day: AppDayWeather) -> some View {
@@ -402,7 +377,7 @@ struct WeatherView: View {
         return HStack(spacing: AppConstants.Spacing.sm) {
             Text(dayLabel(day.date))
                 .font(.subheadline)
-                .foregroundColor(AppConstants.darkText)
+                .foregroundColor(.white)
                 .frame(width: 85, alignment: .leading)
 
             Image(systemName: day.sfSymbolName)
@@ -414,16 +389,15 @@ struct WeatherView: View {
 
             HStack(spacing: 4) {
                 Text("\(Int(day.lowTemp))°")
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.white.opacity(0.6))
                 Text("–")
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.white.opacity(0.6))
                 Text("\(Int(day.highTemp))°F")
                     .fontWeight(.medium)
-                    .foregroundColor(AppConstants.darkText)
+                    .foregroundColor(.white)
             }
             .font(.subheadline)
 
-            // Bee activity dot
             Image(systemName: beeAct.icon)
                 .font(.system(size: 14))
                 .foregroundColor(beeAct.color)
@@ -444,22 +418,22 @@ struct WeatherView: View {
     }
 
     private func errorView(message: String) -> some View {
-        VStack(spacing: AppConstants.Spacing.sm) {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .font(.system(size: 36))
-                .foregroundColor(AppConstants.orange)
-            Text(message)
-                .multilineTextAlignment(.center)
-                .foregroundColor(AppConstants.darkText)
-            Button("Try Again") { service.requestLocation() }
-                .font(.subheadline.weight(.medium))
-                .foregroundColor(AppConstants.darkGreen)
+        GlassEffectContainer {
+            VStack(spacing: AppConstants.Spacing.sm) {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .font(.system(size: 36))
+                    .foregroundColor(AppConstants.orange)
+                Text(message)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.white)
+                Button("Try Again") { service.requestLocation() }
+                    .font(.subheadline.weight(.medium))
+                    .foregroundColor(Color(hex: "#865300"))
+            }
+            .padding(AppConstants.Spacing.lg)
+            .frame(maxWidth: .infinity)
+            .glassEffect(in: .rect(cornerRadius: 14))
         }
-        .padding(AppConstants.Spacing.lg)
-        .frame(maxWidth: .infinity)
-        .background(Color(.systemBackground))
-        .cornerRadius(14)
-        .shadow(color: AppConstants.shadowColor.opacity(0.05), radius: 16, x: 0, y: 4)
     }
 
     // MARK: - Helpers

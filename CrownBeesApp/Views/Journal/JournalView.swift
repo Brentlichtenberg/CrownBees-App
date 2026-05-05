@@ -9,59 +9,51 @@ enum JournalTab {
 struct JournalView: View {
     @State private var selectedTab: JournalTab = .release
 
+    private let bgGradient = LinearGradient(
+        colors: [Color(hex: "#1a3d2a"), Color(hex: "#4a7c5a")],
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+    )
+
     var body: some View {
         VStack(spacing: 0) {
-            // Header
-            Text("Bee Journal")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .tracking(-0.5)
-                .foregroundStyle(AppConstants.onSurface)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            // Glass chip tab selector
+            GlassEffectContainer {
+                HStack(spacing: AppConstants.Spacing.sm) {
+                    chipButton(tab: .release, title: "Release", icon: "arrow.up.circle.fill")
+                    chipButton(tab: .harvest, title: "Harvest", icon: "leaf.fill")
+                    chipButton(tab: .pest, title: "Pest", icon: "ant.fill")
+                }
                 .padding(.horizontal, AppConstants.Spacing.md)
-                .padding(.top, AppConstants.Spacing.md)
-                .padding(.bottom, AppConstants.Spacing.sm)
-                .background(AppConstants.surface)
-
-            // Pollinator Chip Tab Selector
-            HStack(spacing: AppConstants.Spacing.sm) {
-                chipButton(tab: .release, title: "Release", icon: "arrow.up.circle.fill")
-                chipButton(tab: .harvest, title: "Harvest", icon: "leaf.fill")
-                chipButton(tab: .pest, title: "Pest", icon: "ant.fill")
+                .padding(.vertical, AppConstants.Spacing.xs)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, AppConstants.Spacing.md)
             .padding(.vertical, AppConstants.Spacing.sm)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(AppConstants.surfaceContainerLow)
 
-            // Content
             switch selectedTab {
-            case .release:
-                ReleaseLogView()
-            case .harvest:
-                HarvestLogView()
-            case .pest:
-                PestLogView()
+            case .release: ReleaseLogView()
+            case .harvest: HarvestLogView()
+            case .pest:    PestLogView()
             }
         }
-        .background(AppConstants.surface)
-        .navigationTitle("Journal")
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(bgGradient.ignoresSafeArea())
     }
 
     @ViewBuilder
     private func chipButton(tab: JournalTab, title: String, icon: String) -> some View {
-        Button(action: {
+        Button {
             withAnimation(.spring(response: 0.3, dampingFraction: 0.75)) {
                 selectedTab = tab
             }
-        }) {
+        } label: {
             Label(title, systemImage: icon)
                 .font(.subheadline.weight(.medium))
                 .padding(.horizontal, AppConstants.Spacing.md)
                 .padding(.vertical, AppConstants.Spacing.sm)
-                .background(selectedTab == tab ? AppConstants.secondaryContainer : AppConstants.surfaceContainerHighest)
-                .foregroundStyle(selectedTab == tab ? AppConstants.secondary : AppConstants.onSurfaceVariant)
-                .clipShape(Capsule())
+                .foregroundStyle(selectedTab == tab ? Color(hex: "#865300") : .white.opacity(0.85))
+                .glassEffect(in: .capsule)
         }
     }
 }

@@ -1,70 +1,71 @@
 import SwiftUI
 
 struct MainAppView: View {
-    @State private var selectedScreen: AppScreen = .home
-    @State private var isMenuOpen: Bool = false
-    
+    @EnvironmentObject var authService: AuthService
+    @State private var selectedTab: AppTab = .home
+
     var body: some View {
-        ZStack(alignment: .trailing) {
-            // Main Content
-            NavigationStack {
-                Group {
-                    switch selectedScreen {
-                    case .home:
-                        HomeView(selectedScreen: $selectedScreen)
-                    case .weather:
-                        WeatherView()
-                    case .journal:
+        ZStack(alignment: .bottom) {
+            Group {
+                switch selectedTab {
+                case .home:
+                    NavigationStack {
+                        HomeView(selectedTab: $selectedTab)
+                            .navigationTitle("Home")
+                            .navigationBarTitleDisplayMode(.inline)
+                            .toolbar { profileMenu }
+                    }
+                case .journal:
+                    NavigationStack {
                         JournalView()
-                    case .resources:
+                            .navigationTitle("Journal")
+                            .navigationBarTitleDisplayMode(.inline)
+                            .toolbar { profileMenu }
+                    }
+                case .weather:
+                    NavigationStack {
+                        WeatherView()
+                            .navigationTitle("Weather")
+                            .navigationBarTitleDisplayMode(.inline)
+                            .toolbar { profileMenu }
+                    }
+                case .resources:
+                    NavigationStack {
                         ResourcesView()
-                    }
-                }
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    if selectedScreen != .home {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Button(action: {
-                                withAnimation(.easeInOut(duration: 0.2)) {
-                                    selectedScreen = .home
-                                }
-                            }) {
-                                HStack(spacing: 4) {
-                                    Image(systemName: "chevron.left")
-                                        .fontWeight(.semibold)
-                                    Text("Home")
-                                }
-                                .foregroundStyle(AppConstants.primary)
-                            }
-                        }
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        MenuButton(isMenuOpen: $isMenuOpen)
+                            .navigationTitle("Resources")
+                            .navigationBarTitleDisplayMode(.inline)
+                            .toolbar { profileMenu }
                     }
                 }
             }
-            
-            // Overlay dimming when menu is open
-            if isMenuOpen {
-                Color.black.opacity(0.4)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        withAnimation(.easeInOut(duration: 0.3)) {
-                            isMenuOpen = false
-                        }
-                    }
-                    .transition(.opacity)
-            }
-            
-            // Side Drawer (slides from trailing edge)
-            if isMenuOpen {
-                SideMenuView(selectedScreen: $selectedScreen, isMenuOpen: $isMenuOpen)
-                    .frame(width: 280)
-                    .shadow(color: .black.opacity(0.2), radius: 8, x: -4, y: 0)
-                    .transition(.move(edge: .trailing))
-                    .zIndex(1)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+            FloatingTabBar(selection: $selectedTab)
+                .padding(.bottom, 8)
+                .padding(.horizontal, 0)
+        }
+        .ignoresSafeArea(.keyboard)
+    }
+
+    @ToolbarContentBuilder
+    private var profileMenu: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Menu {
+                if let user = authService.currentUser {
+                    Text(user.email)
+                        .font(.caption)
+                }
+                Divider()
+                Button(role: .destructive) {
+                    authService.logout()
+                } label: {
+                    Label("Log Out", systemImage: "rectangle.portrait.and.arrow.right")
+                }
+            } label: {
+                Image(systemName: "person.circle")
+                    .font(.system(size: 18, weight: .medium))
+                    .foregroundStyle(AppConstants.primary)
             }
         }
-        .animation(.easeInOut(duration: 0.3), value: isMenuOpen)
     }
 }
