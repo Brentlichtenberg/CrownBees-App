@@ -104,16 +104,16 @@ struct HomeView: View {
                 VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
                     Text(title)
                         .font(.headline)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.primary)
                     Text(description)
                         .font(.caption)
-                        .foregroundStyle(.white.opacity(0.65))
+                        .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
                 Image(systemName: "chevron.right")
                     .font(.caption.weight(.semibold))
-                    .foregroundStyle(.white.opacity(0.4))
+                    .foregroundStyle(.secondary.opacity(0.7))
             }
             .padding(AppConstants.Spacing.md)
             .contentShape(Rectangle())

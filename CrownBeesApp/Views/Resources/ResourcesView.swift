@@ -15,24 +15,22 @@ struct ResourcesView: View {
             VStack(spacing: AppConstants.Spacing.lg) {
                 // Hero Glass Card
                 GlassEffectContainer {
-                    HStack(alignment: .top) {
-                        VStack(alignment: .leading, spacing: AppConstants.Spacing.sm) {
-                            Image(systemName: "link.circle.fill")
-                                .font(.system(size: 36))
-                                .foregroundStyle(.white.opacity(0.9))
-                            Text("Bee Resources")
-                                .font(.system(size: 32, weight: .black))
-                                .tracking(-0.3)
-                                .foregroundStyle(.white)
-                            Text("Access all CrownBees resources, guides, and products.")
-                                .font(.subheadline)
-                                .foregroundStyle(.white.opacity(0.85))
-                        }
-                        Spacer()
-                        Image(systemName: "hexagon.fill")
-                            .font(.system(size: 80))
-                            .foregroundStyle(.white.opacity(0.08))
+                    VStack(alignment: .leading, spacing: AppConstants.Spacing.sm) {
+                        Image(systemName: "link.circle.fill")
+                            .font(.system(size: 36))
+                            .foregroundStyle(.primary)
+                        Text("Pollinator Resources")
+                            .font(.system(size: 32, weight: .black))
+                            .tracking(-0.3)
+                            .foregroundStyle(.primary)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .lineLimit(nil)
+                        Text("Access all CrownBees resources, guides, and products.")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(AppConstants.Spacing.lg)
                     .glassEffect(in: .rect(cornerRadius: AppConstants.Radius.lg))
                 }
@@ -101,6 +99,7 @@ struct ResourcesView: View {
                 }
             }
             .padding(AppConstants.Spacing.md)
+            .padding(.bottom, 48)
         }
         .background(bgGradient.ignoresSafeArea())
         .navigationTitle("Resources")
@@ -128,14 +127,14 @@ struct ResourcesView: View {
                 VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
                     Text(title)
                         .font(.headline)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.primary)
                     Text(description)
                         .font(.caption)
-                        .foregroundStyle(.white.opacity(0.75))
+                        .foregroundStyle(.secondary)
                 }
                 Spacer()
                 Image(systemName: "chevron.right")
-                    .foregroundStyle(.white.opacity(0.5))
+                    .foregroundStyle(.secondary)
                     .font(.caption)
             }
             .padding(AppConstants.Spacing.md)

@@ -15,17 +15,17 @@ struct HarvestLogView: View {
                     VStack(alignment: .leading, spacing: AppConstants.Spacing.md) {
                         Text("Log a Harvest")
                             .font(.headline)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.primary)
 
                         DatePicker("Date of Harvest", selection: $date, displayedComponents: .date)
                             .datePickerStyle(.compact)
                             .tint(Color(hex: "#865300"))
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.primary)
 
                         VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
                             Text("Number of Bees Harvested")
                                 .font(.caption)
-                                .foregroundStyle(.white.opacity(0.75))
+                                .foregroundStyle(.secondary)
                             GlassInputField(
                                 placeholder: "Enter number",
                                 text: $numberOfBees,
@@ -36,7 +36,7 @@ struct HarvestLogView: View {
                         VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
                             Text("Notes (optional)")
                                 .font(.caption)
-                                .foregroundStyle(.white.opacity(0.75))
+                                .foregroundStyle(.secondary)
                             GlassInputField(
                                 placeholder: "Add notes...",
                                 text: $notes,
@@ -68,7 +68,7 @@ struct HarvestLogView: View {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundStyle(Color(hex: "#865300"))
                                 Text("Entry saved!")
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(.primary)
                                     .font(.caption)
                             }
                         }
@@ -88,7 +88,11 @@ struct HarvestLogView: View {
                         GlassEffectContainer {
                             VStack(spacing: AppConstants.Spacing.xs) {
                                 ForEach(entries.reversed()) { entry in
-                                    entryRow(entry: entry)
+                                    SwipeToDeleteRow {
+                                        entryRow(entry: entry)
+                                    } onDelete: {
+                                        deleteEntry(id: entry.id)
+                                    }
                                 }
                             }
                             .padding(AppConstants.Spacing.sm)
@@ -110,11 +114,11 @@ struct HarvestLogView: View {
         VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
             HStack {
                 Image(systemName: "calendar")
-                    .foregroundStyle(.white.opacity(0.7))
+                    .foregroundStyle(.secondary)
                 Text(entry.date, style: .date)
                     .font(.subheadline)
                     .fontWeight(.medium)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.primary)
                 Spacer()
                 HStack(spacing: AppConstants.Spacing.xs) {
                     Image(systemName: "hexagon.fill")
@@ -129,12 +133,17 @@ struct HarvestLogView: View {
             if !entry.notes.isEmpty {
                 Text(entry.notes)
                     .font(.caption)
-                    .foregroundStyle(.white.opacity(0.75))
+                    .foregroundStyle(.secondary)
             }
         }
         .padding(AppConstants.Spacing.sm)
         .background(.white.opacity(0.1))
         .clipShape(RoundedRectangle(cornerRadius: AppConstants.Radius.md))
+    }
+
+    private func deleteEntry(id: UUID) {
+        entries.removeAll { $0.id == id }
+        StorageService.shared.saveHarvestEntries(entries)
     }
 
     private func saveEntry() {

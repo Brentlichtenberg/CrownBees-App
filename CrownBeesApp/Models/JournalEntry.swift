@@ -28,8 +28,6 @@ struct PestEntry: Codable, Identifiable {
 enum PestType: String, Codable, CaseIterable {
     case mites = "Houdini Flies"
     case wasps = "Wasps"
-    case ants = "Ants"
-    case birds = "Birds"
     case other = "Other"
 }
 

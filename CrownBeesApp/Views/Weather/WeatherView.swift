@@ -60,15 +60,15 @@ struct WeatherView: View {
         VStack(spacing: AppConstants.Spacing.sm) {
             HStack(spacing: AppConstants.Spacing.sm) {
                 Image(systemName: "magnifyingglass")
-                    .foregroundStyle(.white.opacity(0.8))
+                    .foregroundStyle(.secondary)
                 TextField("City, state or zip code…", text: $searchText)
                     .submitLabel(.search)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.primary)
                     .onSubmit { runSearch() }
                 if !searchText.isEmpty {
                     Button { searchText = "" } label: {
                         Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.white.opacity(0.7))
+                            .foregroundStyle(.secondary)
                     }
                 }
             }
@@ -121,12 +121,12 @@ struct WeatherView: View {
                             .tracking(0.8)
                         Text("Dave's Bee Report")
                             .font(.headline)
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                     }
                     Spacer()
                 }
 
-                Divider().overlay(.white.opacity(0.3))
+                Divider().overlay(.primary.opacity(0.2))
 
                 Text(advisory.headline)
                     .font(.title3.weight(.bold))
@@ -134,7 +134,7 @@ struct WeatherView: View {
 
                 Text(advisory.body)
                     .font(.subheadline)
-                    .foregroundColor(.white.opacity(0.9))
+                    .foregroundColor(.primary)
                     .lineSpacing(4)
                     .fixedSize(horizontal: false, vertical: true)
 
@@ -142,30 +142,30 @@ struct WeatherView: View {
                     HStack(spacing: 6) {
                         Image(systemName: "location.circle")
                             .font(.caption)
-                            .foregroundColor(.white.opacity(0.7))
+                            .foregroundColor(.secondary)
                         Text("Search for your location above for personalised conditions.")
                             .font(.caption)
-                            .foregroundColor(.white.opacity(0.7))
+                            .foregroundColor(.secondary)
                     }
                     .padding(.top, 2)
                 }
 
-                Divider().overlay(.white.opacity(0.3))
+                Divider().overlay(.primary.opacity(0.2))
 
                 HStack(spacing: 0) {
                     Image(systemName: "person.fill")
                         .font(.caption2)
-                        .foregroundColor(.white.opacity(0.6))
+                        .foregroundColor(.secondary)
                     Text(" Dave Hunter · Crown Bees")
                         .font(.caption2)
-                        .foregroundColor(.white.opacity(0.6))
+                        .foregroundColor(.secondary)
                     Spacer()
                     Image(systemName: "book.closed.fill")
                         .font(.caption2)
-                        .foregroundColor(.white.opacity(0.6))
+                        .foregroundColor(.secondary)
                     Text(" The Mason Bee Revolution")
                         .font(.caption2)
-                        .foregroundColor(.white.opacity(0.6))
+                        .foregroundColor(.secondary)
                 }
             }
             .padding(AppConstants.Spacing.lg)
@@ -189,7 +189,7 @@ struct WeatherView: View {
                         .foregroundColor(readiness.color)
                     Text(cardTitle)
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
                     Spacer()
                     Text(readiness.label)
                         .font(.caption.weight(.bold))
@@ -211,7 +211,7 @@ struct WeatherView: View {
                                 )
                             Text(forecastDayAbbrev(offset: i))
                                 .font(.system(size: 9, weight: .medium))
-                                .foregroundColor(.white.opacity(0.7))
+                                .foregroundColor(.secondary)
                         }
                     }
                     Spacer()
@@ -223,7 +223,7 @@ struct WeatherView: View {
                         .foregroundColor(readiness.color)
                     Text("\(warmCount) of 7 forecast days above \(Int(advisory.tempThreshold))°F")
                         .font(.caption)
-                        .foregroundColor(.white.opacity(0.75))
+                        .foregroundColor(.secondary)
                 }
 
                 Text(BeeSeasonalAdvisor.releaseTip(
@@ -232,7 +232,7 @@ struct WeatherView: View {
                 ))
                 .font(.caption)
                 .italic()
-                .foregroundColor(.white.opacity(0.8))
+                .foregroundColor(.primary.opacity(0.8))
                 .lineSpacing(3)
                 .fixedSize(horizontal: false, vertical: true)
             }
@@ -253,11 +253,11 @@ struct WeatherView: View {
                             if !service.locationName.isEmpty {
                                 Text(service.locationName)
                                     .font(.title2.weight(.bold))
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                             }
                             Text(weather.conditionLabel)
                                 .font(.subheadline)
-                                .foregroundColor(.white.opacity(0.7))
+                                .foregroundColor(.secondary)
                         }
                         Spacer()
                         HStack(alignment: .top, spacing: 2) {
@@ -267,17 +267,13 @@ struct WeatherView: View {
                                 .font(.title2)
                                 .padding(.top, 8)
                         }
-                        .foregroundColor(.white)
-                    }
-
-                    HStack {
-                        Image(systemName: weather.sfSymbolName)
+                        .foregroundColor(.primary)
                             .font(.system(size: 48))
                             .symbolRenderingMode(.multicolor)
                         Spacer()
                     }
 
-                    Divider().overlay(.white.opacity(0.3))
+                    Divider().overlay(.primary.opacity(0.2))
 
                     HStack(spacing: 0) {
                         detailCell(icon: "humidity.fill",       label: "Humidity",   value: "\(weather.humidity)%")
@@ -299,13 +295,13 @@ struct WeatherView: View {
         VStack(spacing: 4) {
             Image(systemName: icon)
                 .font(.system(size: 20))
-                .foregroundColor(.white.opacity(0.85))
+                .foregroundColor(.secondary)
             Text(value)
                 .font(.subheadline.weight(.semibold))
-                .foregroundColor(.white)
+                .foregroundColor(.primary)
             Text(label)
                 .font(.caption2)
-                .foregroundColor(.white.opacity(0.7))
+                .foregroundColor(.secondary)
         }
     }
 
@@ -323,7 +319,7 @@ struct WeatherView: View {
                     .foregroundColor(activity.color)
                 Text(activityTip)
                     .font(.caption)
-                    .foregroundColor(.white.opacity(0.75))
+                    .foregroundColor(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer()
@@ -350,17 +346,17 @@ struct WeatherView: View {
                 HStack {
                     Text("7-Day Forecast")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
                     Spacer()
                     Text("Bee Activity")
                         .font(.caption)
-                        .foregroundColor(.white.opacity(0.7))
+                        .foregroundColor(.secondary)
                 }
 
                 ForEach(service.dailyForecast, id: \.date) { day in
                     forecastRow(day)
                     if day.date != service.dailyForecast.last?.date {
-                        Divider().overlay(.white.opacity(0.2))
+                        Divider().overlay(.primary.opacity(0.2))
                     }
                 }
             }
@@ -377,7 +373,7 @@ struct WeatherView: View {
         return HStack(spacing: AppConstants.Spacing.sm) {
             Text(dayLabel(day.date))
                 .font(.subheadline)
-                .foregroundColor(.white)
+                .foregroundColor(.primary)
                 .frame(width: 85, alignment: .leading)
 
             Image(systemName: day.sfSymbolName)
@@ -389,12 +385,12 @@ struct WeatherView: View {
 
             HStack(spacing: 4) {
                 Text("\(Int(day.lowTemp))°")
-                    .foregroundColor(.white.opacity(0.6))
+                    .foregroundColor(.secondary)
                 Text("–")
-                    .foregroundColor(.white.opacity(0.6))
+                    .foregroundColor(.secondary)
                 Text("\(Int(day.highTemp))°F")
                     .fontWeight(.medium)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
             }
             .font(.subheadline)
 
@@ -425,7 +421,7 @@ struct WeatherView: View {
                     .foregroundColor(AppConstants.orange)
                 Text(message)
                     .multilineTextAlignment(.center)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                 Button("Try Again") { service.requestLocation() }
                     .font(.subheadline.weight(.medium))
                     .foregroundColor(Color(hex: "#865300"))

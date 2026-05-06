@@ -83,7 +83,7 @@ struct LoginView: View {
                 Button(action: { showRegister = true }) {
                     HStack(spacing: 4) {
                         Text("Don't have an account?")
-                            .foregroundStyle(.white.opacity(0.7))
+                            .foregroundStyle(.secondary)
                         Text("Register")
                             .fontWeight(.semibold)
                             .foregroundStyle(AppConstants.primary)

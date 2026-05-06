@@ -20,6 +20,7 @@ struct GlassInputField: View {
                     .keyboardType(keyboardType)
             }
         }
+        .foregroundStyle(.primary)
         .padding(AppConstants.Spacing.md)
         .glassEffect(in: .rect(cornerRadius: AppConstants.Radius.md))
     }

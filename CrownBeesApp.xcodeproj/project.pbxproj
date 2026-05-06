@@ -24,6 +24,7 @@
 		AA00020000000000000000FFE /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FFE /* MainAppView.swift */; };
 		AA00020000000000000000FFF /* FloatingTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000000FFF /* FloatingTabBar.swift */; };
 		AB00020000000000000001AA /* GlassInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB00010000000000000001AA /* GlassInputField.swift */; };
+		AB00020000000000000001AB /* SwipeToDeleteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB00010000000000000001AB /* SwipeToDeleteRow.swift */; };
 		AA00020000000000000001F0 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000001F0 /* WeatherView.swift */; };
 		AA00020000000000000001F1 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000001F1 /* JournalView.swift */; };
 		AA00020000000000000001F2 /* ReleaseLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010000000000000001F2 /* ReleaseLogView.swift */; };
@@ -51,6 +52,7 @@
 		AA00010000000000000000FFE /* MainAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppView.swift; sourceTree = "<group>"; };
 		AA00010000000000000000FFF /* FloatingTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTabBar.swift; sourceTree = "<group>"; };
 		AB00010000000000000001AA /* GlassInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassInputField.swift; sourceTree = "<group>"; };
+		AB00010000000000000001AB /* SwipeToDeleteRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeToDeleteRow.swift; sourceTree = "<group>"; };
 		AA00010000000000000001F0 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		AA00010000000000000001F1 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		AA00010000000000000001F2 /* ReleaseLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseLogView.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			children = (
 				AA00010000000000000000FFE /* MainAppView.swift */,
 				AA00010000000000000000FFF /* FloatingTabBar.swift */,
+				AB00010000000000000001AB /* SwipeToDeleteRow.swift */,
 				AB00010000000000000001AA /* GlassInputField.swift */,
 			);
 			path = Components;
@@ -293,6 +296,7 @@
 				AA00020000000000000000FFB /* RegisterView.swift in Sources */,
 				AA00020000000000000000FFE /* MainAppView.swift in Sources */,
 				AA00020000000000000000FFF /* FloatingTabBar.swift in Sources */,
+				AB00020000000000000001AB /* SwipeToDeleteRow.swift in Sources */,
 				AB00020000000000000001AA /* GlassInputField.swift in Sources */,
 				AA00020000000000000000FF /* HomeView.swift in Sources */,
 				AA00020000000000000001F0 /* WeatherView.swift in Sources */,

@@ -93,7 +93,7 @@ struct RegisterView: View {
                 Button(action: { dismiss() }) {
                     HStack(spacing: 4) {
                         Text("Already have an account?")
-                            .foregroundStyle(.white.opacity(0.7))
+                            .foregroundStyle(.secondary)
                         Text("Log In")
                             .fontWeight(.semibold)
                             .foregroundStyle(AppConstants.primary)

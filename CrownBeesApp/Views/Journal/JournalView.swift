@@ -50,6 +50,8 @@ struct JournalView: View {
         } label: {
             Label(title, systemImage: icon)
                 .font(.subheadline.weight(.medium))
+                .lineLimit(1)
+                .fixedSize(horizontal: true, vertical: false)
                 .padding(.horizontal, AppConstants.Spacing.md)
                 .padding(.vertical, AppConstants.Spacing.sm)
                 .foregroundStyle(selectedTab == tab ? Color(hex: "#865300") : .white.opacity(0.85))

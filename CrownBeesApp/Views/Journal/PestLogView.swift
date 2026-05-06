@@ -16,18 +16,18 @@ struct PestLogView: View {
                     VStack(alignment: .leading, spacing: AppConstants.Spacing.md) {
                         Text("Log a Pest Observation")
                             .font(.headline)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.primary)
 
                         DatePicker("Date Observed", selection: $date, displayedComponents: .date)
                             .datePickerStyle(.compact)
                             .tint(Color(hex: "#865300"))
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.primary)
 
                         // Pest Type chips
                         VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
                             Text("Pest Type")
                                 .font(.caption)
-                                .foregroundStyle(.white.opacity(0.75))
+                                .foregroundStyle(.secondary)
                             GlassEffectContainer {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(spacing: AppConstants.Spacing.sm) {
@@ -41,7 +41,7 @@ struct PestLogView: View {
                                                     .font(.subheadline.weight(.medium))
                                                     .padding(.horizontal, AppConstants.Spacing.md)
                                                     .padding(.vertical, AppConstants.Spacing.sm)
-                                                    .foregroundStyle(pestType == pest ? Color(hex: "#865300") : .white.opacity(0.85))
+                                                    .foregroundStyle(pestType == pest ? Color(hex: "#865300") : .primary.opacity(0.75))
                                                     .glassEffect(in: .capsule)
                                             }
                                         }
@@ -54,7 +54,7 @@ struct PestLogView: View {
                         VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
                             Text("Severity")
                                 .font(.caption)
-                                .foregroundStyle(.white.opacity(0.75))
+                                .foregroundStyle(.secondary)
                             GlassEffectContainer {
                                 HStack(spacing: AppConstants.Spacing.sm) {
                                     ForEach(PestSeverity.allCases, id: \.self) { sev in
@@ -78,7 +78,7 @@ struct PestLogView: View {
                         VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
                             Text("Notes (optional)")
                                 .font(.caption)
-                                .foregroundStyle(.white.opacity(0.75))
+                                .foregroundStyle(.secondary)
                             GlassInputField(
                                 placeholder: "Add notes...",
                                 text: $notes,
@@ -110,7 +110,7 @@ struct PestLogView: View {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundStyle(Color(hex: "#865300"))
                                 Text("Entry saved!")
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(.primary)
                                     .font(.caption)
                             }
                         }
@@ -130,7 +130,11 @@ struct PestLogView: View {
                         GlassEffectContainer {
                             VStack(spacing: AppConstants.Spacing.xs) {
                                 ForEach(entries.reversed()) { entry in
-                                    entryRow(entry: entry)
+                                    SwipeToDeleteRow {
+                                        entryRow(entry: entry)
+                                    } onDelete: {
+                                        deleteEntry(id: entry.id)
+                                    }
                                 }
                             }
                             .padding(AppConstants.Spacing.sm)
@@ -152,23 +156,23 @@ struct PestLogView: View {
         VStack(alignment: .leading, spacing: AppConstants.Spacing.xs) {
             HStack {
                 Image(systemName: "calendar")
-                    .foregroundStyle(.white.opacity(0.7))
+                    .foregroundStyle(.secondary)
                 Text(entry.date, style: .date)
                     .font(.subheadline)
                     .fontWeight(.medium)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.primary)
                 Spacer()
                 severityBadge(entry.severity)
             }
             HStack(spacing: AppConstants.Spacing.sm) {
                 Label(entry.pestType.rawValue, systemImage: "ant.fill")
                     .font(.caption)
-                    .foregroundStyle(.white.opacity(0.85))
+                    .foregroundStyle(.secondary)
             }
             if !entry.notes.isEmpty {
                 Text(entry.notes)
                     .font(.caption)
-                    .foregroundStyle(.white.opacity(0.75))
+                    .foregroundStyle(.secondary)
             }
         }
         .padding(AppConstants.Spacing.sm)
@@ -202,6 +206,11 @@ struct PestLogView: View {
         case .medium: return Color(hex: "#865300")
         case .high:   return Color.red
         }
+    }
+
+    private func deleteEntry(id: UUID) {
+        entries.removeAll { $0.id == id }
+        StorageService.shared.savePestEntries(entries)
     }
 
     private func saveEntry() {
